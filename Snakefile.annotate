@@ -1,0 +1,256 @@
+from itertools import product
+from pathlib import Path
+from tqdm import tqdm
+import pandas as pd
+import socket
+import yaml
+import glob
+
+
+# remove references
+yaml.Dumper.ignore_aliases = lambda *args : True
+
+####################################################################################
+
+################################# CLUSTER CONFIG ###################################
+
+####################################################################################
+
+
+with open("config_dataset.yaml", "r") as stream:
+    DATASET_INFO = yaml.safe_load(stream)
+
+
+MODELS = DATASET_INFO["MODEL"]
+OUT_FOLDER = DATASET_INFO["out_folder"]
+DOWNSAMPLE_FACTOR = DATASET_INFO["downsample_factor"]
+SPOT_DIMATER = DATASET_INFO["spot_diameter"]
+SPOT_DISTANCE = DATASET_INFO["spot_distance"]
+WHITE_CUTOFF = DATASET_INFO["white_cutoff"]
+METADATA_PATH = DATASET_INFO["metadata_path"]
+SOURCE_DATA_PATH = DATASET_INFO["source_data_path"]
+
+with open("../Snakemake_info.yaml", "r") as stream:
+    SNAKEMAKE_INFO = yaml.safe_load(stream)
+
+
+CONDA_ENV = SNAKEMAKE_INFO["CONDA_ENV"]
+PARTITION = SNAKEMAKE_INFO["PARTITION"]
+GPU = SNAKEMAKE_INFO["GPU"]
+MEM = SNAKEMAKE_INFO["MEM"]
+TIME = SNAKEMAKE_INFO["TIME"]
+CPU = SNAKEMAKE_INFO["CPU"]
+MEM_RULES = SNAKEMAKE_INFO["MEM_RULES"]
+TMP_MEM = SNAKEMAKE_INFO["TMP_MEM"]
+TIME_RULES = SNAKEMAKE_INFO["TIME_RULES"]
+
+
+# Create directories
+folders_to_create = [
+    "logs", "prediction", "data/h5ad", "data/image", "data/meta",
+]
+
+for folder in folders_to_create:
+    Path(f"{OUT_FOLDER}/{folder}").mkdir(parents=True, exist_ok=True)
+
+model_folders_to_create = [
+    "data/h5ad",
+    "data/h5ad_annotated"
+]
+
+for folder in model_folders_to_create:
+    for model in MODELS:
+        Path(f"{OUT_FOLDER}/prediction/{model}/{folder}").mkdir(parents=True, exist_ok=True)
+
+
+
+metadata = pd.read_csv(METADATA_PATH)
+
+IMAGE_RNA_PAIRS = [row.id_pair for _, row in metadata.iterrows()]
+
+rule all:
+    input:
+         expand(OUT_FOLDER + "/data/h5ad/{pair}.h5ad", pair=IMAGE_RNA_PAIRS),
+         expand(OUT_FOLDER + "/prediction/{model}/data/h5ad/{pair}.h5ad", model=MODELS, pair=IMAGE_RNA_PAIRS),
+         OUT_FOLDER + "/prediction/evaluate_tcga.ipynb",
+         expand(OUT_FOLDER + "/prediction/{model}_label_model.pkl", model=MODELS),
+         expand(OUT_FOLDER + "/prediction/{model}/data/h5ad_annotated/{pair}.h5ad", model=MODELS, pair=IMAGE_RNA_PAIRS),
+         OUT_FOLDER + "/prediction/evaluate_label_model.ipynb",
+         OUT_FOLDER + "/prediction/survival_analysis.ipynb"
+
+rule create_anndata:
+    input:
+        pyscript = "../workflows/preprocess/create_tcga_anndata.py"
+    output:
+        OUT_FOLDER + "/data/h5ad/{pair}.h5ad"
+    params:
+        node = socket.gethostname(),
+        downsample_factor = DOWNSAMPLE_FACTOR,
+        spot_diameter = SPOT_DIMATER,
+        spot_distance = SPOT_DISTANCE,
+        white_cutoff = WHITE_CUTOFF,
+        out_folder = OUT_FOLDER,
+        metadata_path = METADATA_PATH,
+        source_data_path = SOURCE_DATA_PATH
+    threads: 1
+    resources:
+        p="compute,gpu",
+        gpu="gpu:0",
+        mem_mb=40000,
+        time="2:00:00",
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="create_anndata",
+        tmp="15G"
+    conda: "nonchev"
+    shell:
+        """
+        echo {params.node}
+        python {input.pyscript} {params.downsample_factor} {params.spot_diameter} {params.spot_distance} {params.white_cutoff} {wildcards.pair} {params.out_folder} {params.metadata_path} {params.source_data_path}
+        """
+
+rule predict_expression:
+    input:
+        OUT_FOLDER + "/data/h5ad/{pair}.h5ad",
+        pyscript = "../workflows/annotation/predict_expression.py"
+    output:
+        OUT_FOLDER + "/prediction/{model}/data/h5ad/{pair}.h5ad"
+    params:
+        node = socket.gethostname(),
+        out_folder = OUT_FOLDER,
+        source_data_path = SOURCE_DATA_PATH
+    threads: 4
+    resources:
+        p="gpu",
+        gpu="gpu:1",
+        mem_mb=50000,
+        time="42:00:00",
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="predict_expression",
+        tmp="15G"
+    conda: "nonchev"
+    shell:
+        """
+        echo {params.node}
+        python {input.pyscript} {wildcards.model} {wildcards.pair} {params.out_folder} {params.source_data_path}
+        """
+
+rule train_label_model:
+    input:
+        expand(OUT_FOLDER + "/prediction/{model}/data/h5ad/{pair}.h5ad", model=MODELS, pair=IMAGE_RNA_PAIRS),
+        pyscript = "../workflows/annotation/train_label_classifier.py",
+    output:
+        OUT_FOLDER + "/prediction/{model}_label_model.pkl",
+    params:
+        node = socket.gethostname(),
+        out_folder = OUT_FOLDER,
+    threads: 20
+    resources:
+        p="compute,gpu",
+        gpu="gpu:0",
+        mem_mb=120000,
+        time="8:00:00",
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="train_label_model",
+        tmp="0"
+    conda: "nonchev"
+    shell:
+        """
+        echo {params.node}
+        python {input.pyscript} {wildcards.model} {params.out_folder}
+        """
+
+rule annotate_label_and_text:
+    input:
+        OUT_FOLDER + "/prediction/{model}/data/h5ad/{pair}.h5ad",
+        OUT_FOLDER + "/prediction/{model}_label_model.pkl",
+        pyscript = "../workflows/annotation/annotate_label_and_text.py",
+    output:
+        OUT_FOLDER + "/prediction/{model}/data/h5ad_annotated/{pair}.h5ad",
+    params:
+        node = socket.gethostname(),
+        out_folder = OUT_FOLDER,
+    threads: 3
+    resources:
+        p="compute,gpu",
+        gpu="gpu:0",
+        mem_mb=80000,
+        time="5:00:00",
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="annotate_label_and_text",
+        tmp="0"
+    conda: "nonchev"
+    shell:
+        """
+        echo {params.node}
+        python {input.pyscript} {wildcards.model} {wildcards.pair} {params.out_folder}
+        """
+
+
+rule evaluate_tcga:
+    input:
+        expand(OUT_FOLDER + "/prediction/{model}/data/h5ad_annotated/{pair}.h5ad", model=MODELS, pair=IMAGE_RNA_PAIRS),
+        notebook = "../workflows/evaluate/evaluate_tcga.ipynb",
+    output:
+        notebook = OUT_FOLDER + "/prediction/evaluate_tcga.ipynb"
+    params:
+        out_folder = OUT_FOLDER,
+    threads: 20
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=900000,
+        time="24:00:00",
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="evaluate_tcga",
+        tmp=0
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+       papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder}
+        """
+
+rule evaluate_label_model:
+    input:
+        expand(OUT_FOLDER + "/prediction/{model}_label_model.pkl", model=MODELS),
+        notebook = "../workflows/evaluate/evaluate_label_model.ipynb",
+    output:
+        notebook = OUT_FOLDER + "/prediction/evaluate_label_model.ipynb"
+    params:
+        out_folder = OUT_FOLDER,
+    threads: 1
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=8000,
+        time="6:00:00",
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="evaluate_label_model",
+        tmp=0
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+       papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder}
+        """
+
+rule survival_analysis:
+    input:
+        expand(OUT_FOLDER + "/prediction/{model}/data/h5ad_annotated/{pair}.h5ad", model=MODELS, pair=IMAGE_RNA_PAIRS),
+        notebook = "../workflows/evaluate/survival_analysis.ipynb",
+    output:
+        notebook = OUT_FOLDER + "/prediction/survival_analysis.ipynb"
+    params:
+        out_folder = OUT_FOLDER,
+    threads: 20
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=500000,
+        time="5:00:00",
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="survival_analysis",
+        tmp=0
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+       papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder}
+        """

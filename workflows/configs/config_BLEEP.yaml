@@ -1,0 +1,15 @@
+image_feature_model:
+    - resnet50
+
+epochs:
+    - 150
+
+batch_size:
+    - 512
+
+top_k:
+    - 10
+    - 50
+    - 100
+    - 200
+

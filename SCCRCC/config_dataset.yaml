@@ -1,0 +1,67 @@
+
+SAMPLE:
+   - INT24
+   - INT23
+   - INT22
+   - INT21
+   - INT20
+   - INT19
+   - INT18
+   - INT17
+   - INT16
+   - INT15
+   - INT14
+   - INT13
+   - INT12
+   - INT11
+   - INT10
+   - INT9
+   - INT8
+   - INT7
+   - INT6
+   - INT5
+   - INT4
+   - INT3
+   - INT2
+   - INT1
+
+
+MODEL:
+    - LinearRegression
+    - STNet
+    - DeepSpot
+    - MLP
+    - HisToGene
+    - Hist2ST
+    - THItoGene
+    - BLEEP
+
+IMAGE_FEATURES:
+    - inception
+    - phikon
+    - uni
+    - resnet50
+    - densenet121
+    - hoptimus0
+    - phikonv2
+    
+GENE_SET:
+    - GO_Biological_Process_2023 
+    - GO_Cellular_Component_2023
+    - KEGG_2021_Human
+    - MSigDB_Hallmark_2020
+    - GO_Molecular_Function_2023
+    - Reactome_2022
+
+top_n_genes_to_predict: 5000
+top_n_genes_to_evaluate: 100
+n_mini_tiles: 9
+
+DATASET: "SCCRCC"
+OUT_FOLDER: "out_benchmark"
+
+DOWNSAMPLE_FACTOR: 10
+IMAGE_FORMAT: "tif"
+
+known_genes:
+

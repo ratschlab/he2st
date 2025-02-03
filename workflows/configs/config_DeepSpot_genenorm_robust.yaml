@@ -1,0 +1,29 @@
+image_feature_model:
+#    - inception
+    - hoptimus0
+
+neighbors:
+    - 1
+
+spot_context:
+#    - spot
+#    - spot_subspot
+#    - spot_neighbors
+    - spot_subspot_neighbors
+
+epochs:
+    - 15
+    
+batch_size:
+    - 1024
+
+res:
+    - 0
+    - 1
+
+augmentation:
+#    - default
+    - aestetik
+
+gene_norm:
+    - robust

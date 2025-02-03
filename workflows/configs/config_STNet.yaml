@@ -1,0 +1,17 @@
+image_feature_model:
+    - densenet121
+hidden_layer_sizes:
+    - []
+solver:
+    - "sgd"
+learning_rate_init:
+    - 0.00001
+    - 0.000001
+momentum:
+    - 0.9
+batch_size:
+    - 32
+    - 64
+max_iter:
+    - 50
+    - 200

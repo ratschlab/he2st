@@ -1,0 +1,14 @@
+MODEL:
+    - STNet
+    - DeepSpot
+    - BLEEP
+
+
+downsample_factor: 10
+spot_diameter: 160
+spot_distance: 290
+white_cutoff: 200
+metadata_path: data/metadata_ffpe.csv
+metadata_path_other: data/metadata_ff.csv
+out_folder: out_benchmark_ffpe
+source_data_path: 10x_TuPro

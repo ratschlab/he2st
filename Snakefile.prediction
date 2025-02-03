@@ -1,0 +1,131 @@
+from itertools import product
+from pathlib import Path
+from tqdm import tqdm
+import socket
+import yaml
+import glob
+
+
+# remove references
+yaml.Dumper.ignore_aliases = lambda *args : True
+
+####################################################################################
+
+################################# CLUSTER CONFIG ###################################
+
+####################################################################################
+
+
+with open("config_dataset.yaml", "r") as stream:
+    DATASET_INFO = yaml.safe_load(stream)
+
+DATASET = DATASET_INFO["DATASET"]
+OUT_FOLDER = DATASET_INFO[f"OUT_FOLDER"]
+SAMPLES = DATASET_INFO["SAMPLE"]
+if "SAMPLE_LQ" in DATASET_INFO:
+    SAMPLES = [*SAMPLES, *DATASET_INFO["SAMPLE_LQ"]]
+MODELS = DATASET_INFO["MODEL"]
+IMAGE_FORMAT = DATASET_INFO["IMAGE_FORMAT"]
+IMAGE_FEATURES = DATASET_INFO["IMAGE_FEATURES"]
+DOWNSAMPLE_FACTOR = DATASET_INFO["DOWNSAMPLE_FACTOR"]
+SOURCE_DATA_PATH = DATASET_INFO["DATASET"]
+
+with open("../Snakemake_info.yaml", "r") as stream:
+    SNAKEMAKE_INFO = yaml.safe_load(stream)
+
+
+CONDA_ENV = SNAKEMAKE_INFO["CONDA_ENV"]
+PARTITION = SNAKEMAKE_INFO["PARTITION"]
+GPU = SNAKEMAKE_INFO["GPU"]
+MEM = SNAKEMAKE_INFO["MEM"]
+TIME = SNAKEMAKE_INFO["TIME"]
+CPU = SNAKEMAKE_INFO["CPU"]
+MEM_RULES = SNAKEMAKE_INFO["MEM_RULES"]
+TMP_MEM = SNAKEMAKE_INFO["TMP_MEM"]
+TIME_RULES = SNAKEMAKE_INFO["TIME_RULES"]
+
+
+with open("cross_validation_config.yaml", "r") as stream:
+    CROSS_VALIDATION = yaml.safe_load(stream)
+
+
+# Create directories
+
+
+
+#### PREPROCESSING
+
+# Create directories
+folders_to_create = [
+    "prediction",
+]
+
+for folder in folders_to_create:
+    Path(f"{OUT_FOLDER}/{folder}").mkdir(parents=True, exist_ok=True)
+
+model_folders_to_create = [
+    "data/h5ad",
+    "transcriptomics",
+]
+
+for folder in model_folders_to_create:
+    for model in MODELS:
+        Path(f"{OUT_FOLDER}/prediction/{model}/{folder}").mkdir(parents=True, exist_ok=True)
+
+
+rule all:
+    input:
+         expand(OUT_FOLDER + "/prediction/{model}/data/h5ad/{sample}.h5ad", model=MODELS, sample=SAMPLES),
+         expand(OUT_FOLDER + "/prediction/{model}/transcriptomics/all_evaluate_transcriptomics.ipynb", model=MODELS),
+
+rule predict_expression:
+    input:
+        OUT_FOLDER + "/evaluation/{model}/final_model.pkl",
+        OUT_FOLDER + "/data/h5ad/{sample}.h5ad",
+        pyscript = "../workflows/annotation/predict_expression.py"
+    output:
+        OUT_FOLDER + "/prediction/{model}/data/h5ad/{sample}.h5ad"
+    params:
+        node = socket.gethostname(),
+        out_folder = OUT_FOLDER,
+        source_data_path = SOURCE_DATA_PATH
+    threads: 1
+    resources:
+        p="gpu",
+        gpu="gpu:1",
+        mem_mb=60000,
+        time="5:00:00",
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="predict_expression",
+        tmp="15G"
+    conda: "nonchev"
+    shell:
+        """
+        echo {params.node}
+        python {input.pyscript} {wildcards.model} {wildcards.sample} {params.out_folder} {params.source_data_path}
+        """
+
+
+rule transcriptomics_sample_all_prediction:
+    input:
+        expand(OUT_FOLDER + "/prediction/{model}/data/h5ad/{sample}.h5ad", model=MODELS, sample=SAMPLES),
+        notebook = "../workflows/evaluate/all_evaluate_transcriptomics.ipynb"
+    output:
+        notebook = OUT_FOLDER + "/prediction/{model}/transcriptomics/all_evaluate_transcriptomics.ipynb"
+    threads: 20
+    params:
+        out_folder = OUT_FOLDER,
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=MEM_RULES["transcriptomics_sample"],
+        time=TIME_RULES["transcriptomics_sample"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="transcriptomics_sample",
+        tmp=TMP_MEM["transcriptomics_sample"]
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+        papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder} -p model {wildcards.model}
+        """
+        

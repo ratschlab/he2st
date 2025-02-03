@@ -1,0 +1,144 @@
+Fold_1_1:
+  test:
+  - ZEN47
+  - ZEN46
+  training:
+  - ZEN42
+  - ZEN38
+  - ZEN45
+  - ZEN44
+  validation:
+  - ZEN43
+  - ZEN39
+Fold_1_2:
+  test:
+  - ZEN47
+  - ZEN46
+  training:
+  - ZEN42
+  - ZEN38
+  - ZEN43
+  - ZEN39
+  validation:
+  - ZEN45
+  - ZEN44
+Fold_1_3:
+  test:
+  - ZEN47
+  - ZEN46
+  training:
+  - ZEN43
+  - ZEN39
+  - ZEN45
+  - ZEN44
+  validation:
+  - ZEN42
+  - ZEN38
+Fold_2_1:
+  test:
+  - ZEN42
+  - ZEN38
+  training:
+  - ZEN47
+  - ZEN46
+  - ZEN45
+  - ZEN44
+  validation:
+  - ZEN43
+  - ZEN39
+Fold_2_2:
+  test:
+  - ZEN42
+  - ZEN38
+  training:
+  - ZEN47
+  - ZEN46
+  - ZEN43
+  - ZEN39
+  validation:
+  - ZEN45
+  - ZEN44
+Fold_2_3:
+  test:
+  - ZEN42
+  - ZEN38
+  training:
+  - ZEN43
+  - ZEN39
+  - ZEN45
+  - ZEN44
+  validation:
+  - ZEN47
+  - ZEN46
+Fold_3_1:
+  test:
+  - ZEN43
+  - ZEN39
+  training:
+  - ZEN47
+  - ZEN46
+  - ZEN45
+  - ZEN44
+  validation:
+  - ZEN42
+  - ZEN38
+Fold_3_2:
+  test:
+  - ZEN43
+  - ZEN39
+  training:
+  - ZEN47
+  - ZEN46
+  - ZEN42
+  - ZEN38
+  validation:
+  - ZEN45
+  - ZEN44
+Fold_3_3:
+  test:
+  - ZEN43
+  - ZEN39
+  training:
+  - ZEN42
+  - ZEN38
+  - ZEN45
+  - ZEN44
+  validation:
+  - ZEN47
+  - ZEN46
+Fold_4_1:
+  test:
+  - ZEN45
+  - ZEN44
+  training:
+  - ZEN47
+  - ZEN46
+  - ZEN43
+  - ZEN39
+  validation:
+  - ZEN42
+  - ZEN38
+Fold_4_2:
+  test:
+  - ZEN45
+  - ZEN44
+  training:
+  - ZEN47
+  - ZEN46
+  - ZEN42
+  - ZEN38
+  validation:
+  - ZEN43
+  - ZEN39
+Fold_4_3:
+  test:
+  - ZEN45
+  - ZEN44
+  training:
+  - ZEN42
+  - ZEN38
+  - ZEN43
+  - ZEN39
+  validation:
+  - ZEN47
+  - ZEN46

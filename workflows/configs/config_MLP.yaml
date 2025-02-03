@@ -1,0 +1,7 @@
+image_feature_model:
+    - hoptimus0
+    - uni 
+    - phikon
+hidden_layer_sizes:
+    - [512,512]
+    - [1024,1024]

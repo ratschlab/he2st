@@ -1,0 +1,75 @@
+
+SAMPLE:
+   - INT24
+   - INT23
+   - INT22
+   - INT21
+   - INT20
+   - INT19
+   - INT18
+   - INT17
+   - INT16
+   - INT15
+   - INT14
+   - INT13
+   - INT12
+   - INT11
+   - INT10
+   - INT9
+   - INT8
+   - INT7
+   - INT6
+   - INT5
+   - INT4
+   - INT3
+   - INT2
+   - INT1
+
+
+MODEL:
+    - DeepSpot_context_spot
+    - DeepSpot_context_spotsubspotneighbors1
+    - DeepSpot_context_spotsubspotneighbors3
+    - DeepSpot_context_spotsubspotneighbors5
+    - DeepSpot_oversampling_off
+    - DeepSpot_oversampling_on
+    - DeepSpot_genenorm_no
+    - DeepSpot_genenorm_standard
+    - DeepSpot_genenorm_robust
+    - DeepSpot_image_resnet50
+    - DeepSpot_image_hoptimus0
+    - DeepSpot_image_phikonv2
+    - DeepSpot_image_inception
+    - DeepSpot_image_uni
+    - DeepSpot_image_phikon
+    - DeepSpot_loss_mse
+    - DeepSpot_loss_pearson
+
+IMAGE_FEATURES:
+    - inception
+    - phikon
+    - uni
+    - resnet50
+    - hoptimus0
+    - phikonv2
+    
+GENE_SET:
+    - GO_Biological_Process_2023 
+    - GO_Cellular_Component_2023
+    - KEGG_2021_Human
+    - MSigDB_Hallmark_2020
+    - GO_Molecular_Function_2023
+    - Reactome_2022
+
+top_n_genes_to_predict: 5000
+top_n_genes_to_evaluate: 100
+n_mini_tiles: 9
+
+DATASET: "SCCRCC"
+OUT_FOLDER: "out_ablation"
+
+DOWNSAMPLE_FACTOR: 10
+IMAGE_FORMAT: "tif"
+
+known_genes:
+

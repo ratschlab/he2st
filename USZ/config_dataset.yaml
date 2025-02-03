@@ -1,0 +1,117 @@
+SAMPLE:
+   - KC1
+   - LC5
+   - KC3
+   - LC1
+   - LC2
+   - LC3
+
+SAMPLE_LQ:
+   - LC4
+   - KC2
+
+MODEL:
+    - LinearRegression
+    - STNet
+    - DeepSpot
+    - MLP
+    - HisToGene
+    - Hist2ST
+    - THItoGene
+    - BLEEP
+
+IMAGE_FEATURES:
+    - inception
+    - phikon
+    - uni
+    - resnet50
+    - densenet121
+    - hoptimus0
+    - phikonv2
+
+GENE_SET:
+    - GO_Biological_Process_2023 
+    - GO_Cellular_Component_2023
+    - KEGG_2021_Human
+    - MSigDB_Hallmark_2020
+    - GO_Molecular_Function_2023
+    - Reactome_2022
+
+top_n_genes_to_predict: 5000
+top_n_genes_to_evaluate: 100
+n_mini_tiles: 9
+
+DATASET: "USZ"
+OUT_FOLDER: "out_benchmark"
+
+DOWNSAMPLE_FACTOR: 4
+IMAGE_FORMAT: "tif"
+
+known_genes:
+    - TGFBI
+    - CXCL9
+    - CCL21
+    - RGS1
+    - TXNIP
+    - TAGLN
+    - CCN2
+    - DEPP1
+    - POLR2J3
+    - PPIG
+    - RASA4
+    - RNF145
+    - SPDYE2
+    - UPK3BL1
+    - UPK3BL2
+    - CORO1A
+    - CYBA
+    - MS4A1
+    - SPIB
+    - RAC2
+    - COL1A1
+    - COL6A3
+    - LUM
+    - CLU
+    - FDCSP
+    - LTF
+    - CXCL13
+    - LTB
+    - A2M
+    - C3
+    - SFRP2
+    - CD52
+    - FCMR
+    - IRF8
+    - JAK3
+    - IKZF1
+    - LIMD2
+    - LSP1
+    - PTPRC
+    - PTPRCAP
+    - TRBC1
+    - ARHGAP45
+    - ELOA2
+    - ELOA3P
+    - FCF1
+    - PTGDS
+    - USP17L11
+    - USP17L12
+    - CCL19
+    - ACTA2
+    - ATP2A3
+    - PTPN6
+    - TMC8
+    - CR2
+    - H1-5
+    - HINFP
+    - HMGA1
+    - BLK
+    - CD37
+    - CD79A
+    - CD79B
+    - FCER2
+    - P2RX5
+    - TNFRSF13B
+    - TNFRSF13C
+    - CD3E
+    - TRAC

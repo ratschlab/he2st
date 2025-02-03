@@ -1,0 +1,17 @@
+CONDA_ENV: {python_env: "nonchev", LinearRegression: "nonchev", MLP: "nonchev", DeepSpot: "nonchev", HisToGene: "nonchev", Hist2ST: "nonchev", THItoGene: "nonchev", BLEEP: "nonchev", STNet: "nonchev", TabPFN: "nonchev"}
+
+PARTITION: {LinearRegression: "gpu,compute", MLP: "compute,gpu", DeepSpot: 'gpu', HisToGene: 'gpu', Hist2ST: 'gpu', THItoGene: 'gpu', BLEEP: 'gpu', STNet: 'gpu', TabPFN: 'gpu'}
+
+GPU: {LinearRegression: "gpu:0", MLP: "gpu:0", DeepSpot: "gpu:1", BLEEP: "gpu:1", HisToGene: "gpu:1", Hist2ST: "gpu:1", THItoGene: "gpu:1", STNet: "gpu:0", TabPFN: "gpu:1"}
+
+MEM: {LinearRegression: 42000, MLP: 42000, DeepSpot: 50000, BLEEP: 42000, HisToGene: 50000, Hist2ST: 50000, THItoGene: 50000, STNet: 50000, TabPFN: 50000}
+
+TIME: {LinearRegression: "2:00:00", MLP: "5:00:00", DeepSpot: "4:00:00", HisToGene: "15:00:00", Hist2ST: "15:00:00", THItoGene: "15:00:00", BLEEP: "2:00:00", STNet: "5:00:00", TabPFN: "12:00:00"}
+
+CPU: {LinearRegression: 2, MLP: 4, DeepSpot: 2, HisToGene: 3, Hist2ST: 3, THItoGene: 3, BLEEP: 3, STNet: 4, TabPFN: 4}
+
+MEM_RULES: {"structureData": 500, preprocessH5AD: 25000,extract_image_features: 10000, extract_tiles: 30000, preprocessH5AD": 20000, createInputX: 150000, evaluate_model: 250000, model_comparison: 10000, transcriptomics_sample: 60000, annotate: 11000}
+
+TMP_MEM: {"structureData": 0, extract_tiles: "5G" , extract_image_features: "10G", "preprocessH5AD": "5G", "createInputX": "5G", LinearRegression: 0, RandomForestRegressor: 0, Ridge: 0, PoissonRegressor: 0, evaluate_model: 0, model_comparison: 0, transcriptomics_sample: 0, MLP: "5G", DeepSpot: "15G", annotate: '10G', HisToGene: 0, Hist2ST: 0, THItoGene: 0, BLEEP: 0, STNet: 0, TabPFN: 0}
+
+TIME_RULES: {"structureData": 10, extract_tiles: "1:00:00", "extract_image_features": "2:00:00", "preprocessH5AD": 20, "createInputX": 30, evaluate_model: "20:00:00", model_comparison: 50, transcriptomics_sample: 59, annotate: '10:00:00'}

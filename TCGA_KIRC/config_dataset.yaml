@@ -1,0 +1,15 @@
+MODEL:
+    - DeepSpot
+    - BLEEP
+    - STNet
+
+
+
+downsample_factor: 10
+spot_diameter: 60
+spot_distance: 110
+white_cutoff: 200
+metadata_path: data/metadata_ffpe.csv
+metadata_path_other: data/metadata_ff.csv
+out_folder: out_benchmark_ffpe
+source_data_path: SCCRCC
