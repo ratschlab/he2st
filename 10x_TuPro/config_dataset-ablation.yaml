@@ -1,0 +1,81 @@
+SAMPLE:
+    - MANOFYB-1-1
+    - MANOFYB-1-2
+    - MELIPIT-1-1
+    - MELIPIT-1-2
+    - MACEGEJ-1-1
+    - MACEGEJ-1-2
+    
+    - MAJOFIJ-2-1
+    - MAJOFIJ-2-2
+    - MAKYGIW-1-1
+    - MAKYGIW-1-2
+    - MAHEFOG-1-1
+    - MAHEFOG-1-2
+    - MIDEKOG-1-1
+    - MIDEKOG-1-2
+    - MACEGEJ-2-1
+    - MACEGEJ-2-2
+    - MAJOFIJ-1-1
+    - MAJOFIJ-1-2
+
+
+MODEL:
+    - DeepSpot_context_spot
+    - DeepSpot_context_spotsubspotneighbors1
+    - DeepSpot_context_spotsubspotneighbors3
+    - DeepSpot_context_spotsubspotneighbors5
+    - DeepSpot_oversampling_off
+    - DeepSpot_oversampling_on
+    - DeepSpot_genenorm_no
+    - DeepSpot_genenorm_standard
+    - DeepSpot_genenorm_robust
+    - DeepSpot_image_resnet50
+    - DeepSpot_image_hoptimus0
+    - DeepSpot_image_phikonv2
+    - DeepSpot_image_inception
+    - DeepSpot_image_uni
+    - DeepSpot_image_phikon
+    - DeepSpot_loss_mse
+    - DeepSpot_loss_pearson
+
+IMAGE_FEATURES:
+    - inception
+    - phikon
+    - uni
+    - resnet50
+    - hoptimus0
+    - phikonv2
+
+GENE_SET:
+    - GO_Biological_Process_2023 
+    - GO_Cellular_Component_2023
+    - KEGG_2021_Human
+    - MSigDB_Hallmark_2020
+    - GO_Molecular_Function_2023
+    - Reactome_2022
+
+top_n_genes_to_predict: 5000
+top_n_genes_to_evaluate: 100
+n_mini_tiles: 9
+
+DATASET: "10x_TuPro"
+OUT_FOLDER: "out_ablation"
+
+DOWNSAMPLE_FACTOR: 32
+IMAGE_FORMAT: "tif"
+
+
+known_genes:
+    - BRAF
+    - NRAS
+    - KIT
+    - PTEN
+    - TP53
+    - CDKN2A
+    - MITF
+    - TERT
+    - GNAQ
+    - GNA11
+    - AKT3
+    - NF1

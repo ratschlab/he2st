@@ -1,0 +1,59 @@
+
+SAMPLE:
+   - ZEN47
+   - ZEN46
+   - ZEN45
+   - ZEN44
+   - ZEN43
+   - ZEN42
+   - ZEN39
+   - ZEN38
+
+
+MODEL:
+    - DeepSpot_context_spot
+    - DeepSpot_context_spotsubspotneighbors1
+    - DeepSpot_context_spotsubspotneighbors3
+    - DeepSpot_context_spotsubspotneighbors5
+    - DeepSpot_oversampling_off
+    - DeepSpot_oversampling_on
+    - DeepSpot_genenorm_no
+    - DeepSpot_genenorm_standard
+    - DeepSpot_genenorm_robust
+    - DeepSpot_image_resnet50
+    - DeepSpot_image_hoptimus0
+    - DeepSpot_image_phikonv2
+    - DeepSpot_image_inception
+    - DeepSpot_image_uni
+    - DeepSpot_image_phikon
+    - DeepSpot_loss_mse
+    - DeepSpot_loss_pearson
+
+IMAGE_FEATURES:
+    - inception
+    - phikon
+    - uni
+    - resnet50
+    - hoptimus0
+    - phikonv2
+
+GENE_SET:
+    - GO_Biological_Process_2023 
+    - GO_Cellular_Component_2023
+    - KEGG_2021_Human
+    - MSigDB_Hallmark_2020
+    - GO_Molecular_Function_2023
+    - Reactome_2022
+
+top_n_genes_to_predict: 5000
+top_n_genes_to_evaluate: 100
+n_mini_tiles: 9
+
+DATASET: "COAD"
+OUT_FOLDER: "out_ablation"
+
+DOWNSAMPLE_FACTOR: 10
+IMAGE_FORMAT: "tif"
+
+known_genes:
+

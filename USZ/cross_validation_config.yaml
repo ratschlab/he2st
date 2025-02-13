@@ -1,0 +1,180 @@
+Fold_1_1:
+  test:
+  - KC1
+  training:
+  - LC2
+  - LC3
+  - KC3
+  validation:
+  - LC1
+  - LC5
+Fold_1_2:
+  test:
+  - KC1
+  training:
+  - LC2
+  - LC1
+  - LC5
+  validation:
+  - LC3
+  - KC3
+Fold_1_3:
+  test:
+  - KC1
+  training:
+  - LC1
+  - LC3
+  - LC5
+  - KC3
+  validation:
+  - LC2
+Fold_2_1:
+  test:
+  - LC2
+  training:
+  - KC1
+  - LC3
+  - KC3
+  validation:
+  - LC1
+  - LC5
+Fold_2_2:
+  test:
+  - LC2
+  training:
+  - KC1
+  - LC1
+  - LC5
+  validation:
+  - LC3
+  - KC3
+Fold_2_3:
+  test:
+  - LC2
+  training:
+  - LC1
+  - LC3
+  - LC5
+  - KC3
+  validation:
+  - KC1
+Fold_3_1:
+  test:
+  - LC1
+  training:
+  - KC1
+  - LC3
+  - KC3
+  validation:
+  - LC2
+  - LC5
+Fold_3_2:
+  test:
+  - LC1
+  training:
+  - KC1
+  - LC2
+  - LC5
+  validation:
+  - LC3
+  - KC3
+Fold_3_3:
+  test:
+  - LC1
+  training:
+  - LC2
+  - LC3
+  - LC5
+  - KC3
+  validation:
+  - KC1
+Fold_4_1:
+  test:
+  - LC3
+  training:
+  - KC1
+  - LC1
+  - KC3
+  validation:
+  - LC2
+  - LC5
+Fold_4_2:
+  test:
+  - LC3
+  training:
+  - KC1
+  - LC2
+  - LC5
+  validation:
+  - LC1
+  - KC3
+Fold_4_3:
+  test:
+  - LC3
+  training:
+  - LC2
+  - LC1
+  - LC5
+  - KC3
+  validation:
+  - KC1
+Fold_5_1:
+  test:
+  - LC5
+  training:
+  - KC1
+  - LC1
+  - KC3
+  validation:
+  - LC2
+  - LC3
+Fold_5_2:
+  test:
+  - LC5
+  training:
+  - KC1
+  - LC2
+  - LC3
+  validation:
+  - LC1
+  - KC3
+Fold_5_3:
+  test:
+  - LC5
+  training:
+  - LC2
+  - LC1
+  - LC3
+  - KC3
+  validation:
+  - KC1
+Fold_6_1:
+  test:
+  - KC3
+  training:
+  - KC1
+  - LC1
+  - LC5
+  validation:
+  - LC2
+  - LC3
+Fold_6_2:
+  test:
+  - KC3
+  training:
+  - KC1
+  - LC2
+  - LC3
+  validation:
+  - LC1
+  - LC5
+Fold_6_3:
+  test:
+  - KC3
+  training:
+  - LC2
+  - LC1
+  - LC3
+  - LC5
+  validation:
+  - KC1

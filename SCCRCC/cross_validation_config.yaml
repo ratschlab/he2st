@@ -1,0 +1,2016 @@
+Fold_10_1:
+  test:
+  - INT14
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_10_2:
+  test:
+  - INT14
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_10_3:
+  test:
+  - INT14
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT5
+  - INT1
+Fold_11_1:
+  test:
+  - INT5
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_11_2:
+  test:
+  - INT5
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_11_3:
+  test:
+  - INT5
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_12_1:
+  test:
+  - INT21
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_12_2:
+  test:
+  - INT21
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+Fold_12_3:
+  test:
+  - INT21
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_13_1:
+  test:
+  - INT4
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT21
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_13_2:
+  test:
+  - INT4
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+Fold_13_3:
+  test:
+  - INT4
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_14_1:
+  test:
+  - INT16
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT21
+  - INT4
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_14_2:
+  test:
+  - INT16
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+Fold_14_3:
+  test:
+  - INT16
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_15_1:
+  test:
+  - INT20
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_15_2:
+  test:
+  - INT20
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+Fold_15_3:
+  test:
+  - INT20
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_16_1:
+  test:
+  - INT11
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_16_2:
+  test:
+  - INT11
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT2
+  - INT10
+  - INT19
+Fold_16_3:
+  test:
+  - INT11
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_17_1:
+  test:
+  - INT2
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT11
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_17_2:
+  test:
+  - INT2
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT11
+  - INT10
+  - INT19
+Fold_17_3:
+  test:
+  - INT2
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_18_1:
+  test:
+  - INT15
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT11
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT24
+  - INT9
+  - INT18
+Fold_18_2:
+  test:
+  - INT15
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT11
+  - INT10
+  - INT19
+Fold_18_3:
+  test:
+  - INT15
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_19_1:
+  test:
+  - INT10
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT11
+  - INT15
+  - INT19
+  - INT1
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT24
+  - INT9
+  - INT18
+Fold_19_2:
+  test:
+  - INT10
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT11
+  - INT15
+  - INT19
+Fold_19_3:
+  test:
+  - INT10
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_1_1:
+  test:
+  - INT23
+  training:
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_1_2:
+  test:
+  - INT23
+  training:
+  - INT17
+  - INT3
+  - INT6
+  - INT12
+  - INT14
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT7
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_1_3:
+  test:
+  - INT23
+  training:
+  - INT7
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT17
+  - INT3
+  - INT6
+  - INT12
+  - INT14
+  - INT5
+  - INT1
+Fold_20_1:
+  test:
+  - INT24
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT11
+  - INT15
+  - INT19
+  - INT1
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT9
+  - INT18
+Fold_20_2:
+  test:
+  - INT24
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT11
+  - INT15
+  - INT19
+Fold_20_3:
+  test:
+  - INT24
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_21_1:
+  test:
+  - INT9
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT11
+  - INT15
+  - INT19
+  - INT1
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT24
+  - INT18
+Fold_21_2:
+  test:
+  - INT9
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT24
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT11
+  - INT15
+  - INT19
+Fold_21_3:
+  test:
+  - INT9
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_22_1:
+  test:
+  - INT19
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT11
+  - INT15
+  - INT9
+  - INT1
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT24
+  - INT18
+Fold_22_2:
+  test:
+  - INT19
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT24
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT11
+  - INT15
+  - INT9
+Fold_22_3:
+  test:
+  - INT19
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT1
+Fold_23_1:
+  test:
+  - INT1
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT11
+  - INT15
+  - INT9
+  - INT19
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT24
+  - INT18
+Fold_23_2:
+  test:
+  - INT1
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT24
+  - INT19
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT11
+  - INT15
+  - INT9
+Fold_23_3:
+  test:
+  - INT1
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT19
+Fold_24_1:
+  test:
+  - INT18
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT11
+  - INT15
+  - INT9
+  - INT19
+  validation:
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT24
+  - INT1
+Fold_24_2:
+  test:
+  - INT18
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT2
+  - INT10
+  - INT24
+  - INT19
+  - INT1
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT11
+  - INT15
+  - INT9
+Fold_24_3:
+  test:
+  - INT18
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT5
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT1
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT22
+  - INT14
+  - INT19
+Fold_2_1:
+  test:
+  - INT17
+  training:
+  - INT23
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_2_2:
+  test:
+  - INT17
+  training:
+  - INT23
+  - INT3
+  - INT6
+  - INT12
+  - INT14
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT7
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_2_3:
+  test:
+  - INT17
+  training:
+  - INT7
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT3
+  - INT6
+  - INT12
+  - INT14
+  - INT5
+  - INT1
+Fold_3_1:
+  test:
+  - INT3
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_3_2:
+  test:
+  - INT3
+  training:
+  - INT23
+  - INT17
+  - INT6
+  - INT12
+  - INT14
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT7
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_3_3:
+  test:
+  - INT3
+  training:
+  - INT7
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT6
+  - INT12
+  - INT14
+  - INT5
+  - INT1
+Fold_4_1:
+  test:
+  - INT7
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_4_2:
+  test:
+  - INT7
+  training:
+  - INT23
+  - INT17
+  - INT6
+  - INT12
+  - INT14
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_4_3:
+  test:
+  - INT7
+  training:
+  - INT3
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT6
+  - INT12
+  - INT14
+  - INT5
+  - INT1
+Fold_5_1:
+  test:
+  - INT6
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT12
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_5_2:
+  test:
+  - INT6
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT12
+  - INT14
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_5_3:
+  test:
+  - INT6
+  training:
+  - INT3
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT12
+  - INT14
+  - INT5
+  - INT1
+Fold_6_1:
+  test:
+  - INT12
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT8
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_6_2:
+  test:
+  - INT12
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT14
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_6_3:
+  test:
+  - INT12
+  training:
+  - INT3
+  - INT8
+  - INT13
+  - INT22
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT14
+  - INT5
+  - INT1
+Fold_7_1:
+  test:
+  - INT8
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT13
+  - INT22
+  - INT14
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_7_2:
+  test:
+  - INT8
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT14
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT13
+  - INT22
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_7_3:
+  test:
+  - INT8
+  training:
+  - INT3
+  - INT12
+  - INT13
+  - INT22
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT14
+  - INT5
+  - INT1
+Fold_8_1:
+  test:
+  - INT13
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT22
+  - INT14
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_8_2:
+  test:
+  - INT13
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT14
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT22
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_8_3:
+  test:
+  - INT13
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT22
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT14
+  - INT5
+  - INT1
+Fold_9_1:
+  test:
+  - INT22
+  training:
+  - INT23
+  - INT17
+  - INT3
+  - INT7
+  - INT6
+  - INT12
+  - INT8
+  - INT13
+  - INT14
+  - INT5
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+  - INT1
+  validation:
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT18
+Fold_9_2:
+  test:
+  - INT22
+  training:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT14
+  - INT5
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT15
+  - INT24
+  - INT9
+  - INT1
+  - INT18
+  validation:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT21
+  - INT2
+  - INT10
+  - INT19
+Fold_9_3:
+  test:
+  - INT22
+  training:
+  - INT3
+  - INT12
+  - INT8
+  - INT13
+  - INT21
+  - INT4
+  - INT16
+  - INT20
+  - INT11
+  - INT2
+  - INT15
+  - INT10
+  - INT24
+  - INT9
+  - INT19
+  - INT18
+  validation:
+  - INT23
+  - INT17
+  - INT7
+  - INT6
+  - INT14
+  - INT5
+  - INT1

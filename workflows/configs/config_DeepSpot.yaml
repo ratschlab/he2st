@@ -1,0 +1,27 @@
+image_feature_model:
+    - hoptimus0
+    - uni 
+    - phikon
+
+neighbors:
+    - 1
+
+spot_context:
+    - spot_subspot_neighbors
+
+epochs:
+    - 15
+    
+batch_size:
+    - 1024
+
+res:
+    - 1
+    - 0
+
+augmentation:
+    - aestetik
+
+gene_norm:
+    - standard
+    - null

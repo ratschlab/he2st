@@ -1,0 +1,228 @@
+from itertools import product
+from pathlib import Path
+from tqdm import tqdm
+import socket
+import yaml
+
+####################################################################################
+
+################################# CLUSTER CONFIG ###################################
+
+####################################################################################
+
+
+with open("config_dataset.yaml", "r") as stream:
+    DATASET_INFO = yaml.safe_load(stream)
+
+DATASET = DATASET_INFO["DATASET"]
+OUT_FOLDER = DATASET_INFO[f"OUT_FOLDER"]
+
+if "SAMPLE_LQ" in DATASET_INFO:
+    SAMPLES = [*DATASET_INFO["SAMPLE"], *DATASET_INFO["SAMPLE_LQ"]]
+else:
+    SAMPLES = DATASET_INFO["SAMPLE"]
+
+SAMPLE_HQ = DATASET_INFO["SAMPLE"]
+
+IMAGE_FORMAT = DATASET_INFO["IMAGE_FORMAT"]
+IMAGE_FEATURES = DATASET_INFO["IMAGE_FEATURES"]
+DOWNSAMPLE_FACTOR = DATASET_INFO["DOWNSAMPLE_FACTOR"]
+TOP_N_GENES_TO_PREDICT = DATASET_INFO["top_n_genes_to_predict"]
+N_MINI_TILES = DATASET_INFO["n_mini_tiles"]
+
+with open("../Snakemake_info.yaml", "r") as stream:
+    SNAKEMAKE_INFO = yaml.safe_load(stream)
+
+
+CONDA_ENV = SNAKEMAKE_INFO["CONDA_ENV"]
+PARTITION = SNAKEMAKE_INFO["PARTITION"]
+GPU = SNAKEMAKE_INFO["GPU"]
+MEM = SNAKEMAKE_INFO["MEM"]
+TIME = SNAKEMAKE_INFO["TIME"]
+CPU = SNAKEMAKE_INFO["CPU"]
+MEM_RULES = SNAKEMAKE_INFO["MEM_RULES"]
+TMP_MEM = SNAKEMAKE_INFO["TMP_MEM"]
+TIME_RULES = SNAKEMAKE_INFO["TIME_RULES"]
+
+
+# Create directories
+folders_to_create = [
+    "data/h5ad", "data/image", "data/image_features",
+    "data/tiles", "data/inputX", "data/meta", "logs", 
+    "benchmarks"
+]
+
+for folder in folders_to_create:
+    Path(f"{OUT_FOLDER}/{folder}").mkdir(parents=True, exist_ok=True)
+    if folder == "data/image_features":
+        for image_model in IMAGE_FEATURES:
+            Path(f"{OUT_FOLDER}/{folder}/{image_model}").mkdir(parents=True, exist_ok=True)
+
+
+####################################################################################
+
+#################################### MAIN RULE #####################################
+
+####################################################################################
+
+
+rule all:
+    input:
+        expand(OUT_FOLDER + "/data/h5ad/{sample}.h5ad", sample=SAMPLES),
+        expand(OUT_FOLDER + "/data/image/{sample}." + IMAGE_FORMAT, sample=SAMPLES),
+        expand(OUT_FOLDER + "/data/image_features/{sample}_{image_feature}.pkl", sample=SAMPLES, image_feature=IMAGE_FEATURES),
+        expand(OUT_FOLDER + "/data/meta/{sample}.json", sample=SAMPLES),
+        expand(OUT_FOLDER + "/data/tiles/{sample}.npy", sample=SAMPLES),
+        expand(OUT_FOLDER + "/data/inputX/{sample}.pkl", sample=SAMPLE_HQ),
+        OUT_FOLDER + "/info_highly_variable_genes.csv",
+
+####################################################################################
+
+#################################### PREPROCESS ####################################
+
+####################################################################################
+
+
+
+rule preprocessH5AD:
+    input:
+        pyscript = f"../workflows/preprocess/preprocessH5AD_{DATASET}.py"
+    output:
+        OUT_FOLDER + "/data/h5ad/{sample}.h5ad"
+    params:
+        downsample_factor = DOWNSAMPLE_FACTOR,
+        out_folder = OUT_FOLDER
+    threads: 1
+    resources:
+        p="compute,gpu",
+        gpu="gpu:0",
+        mem_mb=MEM_RULES["preprocessH5AD"],
+        time=TIME_RULES["preprocessH5AD"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="preprocessH5AD",
+        tmp=TMP_MEM["preprocessH5AD"]
+    conda: "nonchev"
+    benchmark: OUT_FOLDER + "/benchmarks/preprocessH5AD/{sample}.log"
+    shell:
+        """
+        python {input.pyscript} {wildcards.sample} {params.downsample_factor} {params.out_folder}
+        """
+
+
+rule structureData:
+    input:
+        pyscript = f"../workflows/preprocess/structure_data_{DATASET}.py"
+    output:
+        OUT_FOLDER + "/data/image/{sample}." + IMAGE_FORMAT,
+        OUT_FOLDER + "/data/meta/{sample}.json",
+    params:
+        out_folder = OUT_FOLDER
+    threads: 1
+    resources:
+        p="compute,gpu",
+        gpu="gpu:0",
+        mem_mb=MEM_RULES["structureData"],
+        time=TIME_RULES["structureData"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="structureData",
+        tmp=TMP_MEM["structureData"]
+    conda: "nonchev"
+    benchmark: OUT_FOLDER + "/benchmarks/structureData/{sample}.log"
+    shell:
+        """
+        python {input.pyscript} {wildcards.sample} {params.out_folder}
+        """
+
+rule extract_image_features:
+    input:
+        OUT_FOLDER + "/data/h5ad/{sample}.h5ad",
+        OUT_FOLDER + "/data/image/{sample}." + IMAGE_FORMAT,
+        OUT_FOLDER + "/data/meta/{sample}.json",
+        pyscript = "../workflows/preprocess/extract_image_features.py"
+    output:
+        OUT_FOLDER + "/data/image_features/{sample}_{image_feature}.pkl"
+    params:
+        ratio = 1.3,
+        n_mini_tiles = N_MINI_TILES,
+        node = socket.gethostname(),
+        out_folder = OUT_FOLDER
+    threads: 1
+    resources:
+        p="gpu",
+        gpu="gpu:1",
+        mem_mb=MEM_RULES["extract_image_features"],
+        time=TIME_RULES["extract_image_features"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="extract_image_features",
+        tmp=TMP_MEM["extract_image_features"]
+    conda: "nonchev"
+    benchmark: OUT_FOLDER + "/benchmarks/extract_image_features/{sample}_{image_feature}.log"
+    shell:
+        """
+        echo {params.node}
+        python {input.pyscript} {wildcards.sample} {wildcards.image_feature} {params.n_mini_tiles} {params.out_folder}
+        """
+
+rule extract_tiles:
+    input:
+        OUT_FOLDER + "/data/h5ad/{sample}.h5ad",
+        OUT_FOLDER + "/data/image/{sample}." + IMAGE_FORMAT,
+        OUT_FOLDER + "/data/meta/{sample}.json",
+        pyscript = "../workflows/preprocess/extract_tiles.py"
+    output:
+        OUT_FOLDER + "/data/tiles/{sample}.npy"
+    params:
+        node = socket.gethostname(),
+        out_folder = OUT_FOLDER
+    threads: 1
+    resources:
+        p="gpu,compute",
+        gpu="gpu:0",
+        mem_mb=MEM_RULES["extract_tiles"],
+        time=TIME_RULES["extract_tiles"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="extract_tiles",
+        tmp=TMP_MEM["extract_tiles"]
+    conda: "nonchev"
+    benchmark: OUT_FOLDER + "/benchmarks/extract_tiles/{sample}.log"
+    shell:
+        """
+        echo {params.node}
+        python {input.pyscript} {wildcards.sample} {params.out_folder}
+        """
+
+rule createInputX:
+    input:
+        expand(OUT_FOLDER + "/data/h5ad/{sample}.h5ad", sample=SAMPLE_HQ),
+        pyscript = "../workflows/preprocess/create_inputX.py"
+    output:
+        OUT_FOLDER + "/info_highly_variable_genes.csv",
+        expand(OUT_FOLDER + "/data/inputX/{sample}.pkl", sample=SAMPLE_HQ),
+    params:
+        top_n_genes_to_predict = TOP_N_GENES_TO_PREDICT,
+        node = socket.gethostname(),
+        out_folder = OUT_FOLDER
+    threads: 1
+    resources:
+        p="compute,gpu",
+        gpu="gpu:0",
+        mem_mb=MEM_RULES["createInputX"],
+        time=TIME_RULES["createInputX"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="createInputX",
+        tmp=TMP_MEM["createInputX"]
+    conda: "nonchev"
+    benchmark: OUT_FOLDER + "/benchmarks/createInputX.log"
+    shell:
+        """
+        python {input.pyscript} {params.out_folder} {params.top_n_genes_to_predict}
+        """
+
+
+
+
+
+
+
+
+

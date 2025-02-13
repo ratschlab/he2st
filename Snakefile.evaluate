@@ -1,0 +1,321 @@
+from itertools import product
+from pathlib import Path
+from tqdm import tqdm
+import socket
+import yaml
+import glob
+
+
+# remove references
+yaml.Dumper.ignore_aliases = lambda *args : True
+
+####################################################################################
+
+################################# CLUSTER CONFIG ###################################
+
+####################################################################################
+
+
+with open("config_dataset.yaml", "r") as stream:
+    DATASET_INFO = yaml.safe_load(stream)
+
+DATASET = DATASET_INFO["DATASET"]
+OUT_FOLDER = DATASET_INFO[f"OUT_FOLDER"]
+SAMPLES = DATASET_INFO["SAMPLE"]
+MODELS = DATASET_INFO["MODEL"]
+IMAGE_FORMAT = DATASET_INFO["IMAGE_FORMAT"]
+IMAGE_FEATURES = DATASET_INFO["IMAGE_FEATURES"]
+DOWNSAMPLE_FACTOR = DATASET_INFO["DOWNSAMPLE_FACTOR"]
+SOURCE_DATA_PATH = DATASET_INFO["DATASET"]
+
+with open("../Snakemake_info.yaml", "r") as stream:
+    SNAKEMAKE_INFO = yaml.safe_load(stream)
+
+
+CONDA_ENV = SNAKEMAKE_INFO["CONDA_ENV"]
+PARTITION = SNAKEMAKE_INFO["PARTITION"]
+GPU = SNAKEMAKE_INFO["GPU"]
+MEM = SNAKEMAKE_INFO["MEM"]
+TIME = SNAKEMAKE_INFO["TIME"]
+CPU = SNAKEMAKE_INFO["CPU"]
+MEM_RULES = SNAKEMAKE_INFO["MEM_RULES"]
+TMP_MEM = SNAKEMAKE_INFO["TMP_MEM"]
+TIME_RULES = SNAKEMAKE_INFO["TIME_RULES"]
+
+
+with open("cross_validation_config.yaml", "r") as stream:
+    CROSS_VALIDATION = yaml.safe_load(stream)
+
+
+# Create directories
+
+TEST_FOLDER = {}
+
+MODEL_PARAMS = {}
+
+for fold in CROSS_VALIDATION:
+    test = "_".join(CROSS_VALIDATION[fold]["test"])
+    validation = "_".join(CROSS_VALIDATION[fold]["validation"])
+    training = "_".join(CROSS_VALIDATION[fold]["training"])
+
+    if test not in TEST_FOLDER:
+        TEST_FOLDER[test]  = [validation]
+    else:
+        TEST_FOLDER[test] = [*TEST_FOLDER[test], validation]
+    
+    validation = "_".join(CROSS_VALIDATION[fold]["validation"])
+    
+    training = "_".join(CROSS_VALIDATION[fold]["training"])
+    
+    
+    for model in MODELS:
+
+        Path(f"{OUT_FOLDER}/evaluation/{model}").mkdir(parents=True, exist_ok=True)
+        Path(f"{OUT_FOLDER}/evaluation/{model}/transcriptomics").mkdir(parents=True, exist_ok=True)
+
+        Path(f"{OUT_FOLDER}/evaluation/{test}/gene_scores/test/{model}").mkdir(parents=True, exist_ok=True)
+        Path(f"{OUT_FOLDER}/evaluation/{test}/gene_scores/validation/{model}").mkdir(parents=True, exist_ok=True)
+
+
+        for subfolder in ["prediction", "parameters", "checkpoint", "statistics"]:
+            Path(f"{OUT_FOLDER}/evaluation/{test}/{validation}/{model}/{subfolder}").mkdir(parents=True, exist_ok=True)
+
+        with open(f"../workflows/configs/config_{model}.yaml", "r") as stream:
+                MODEL_CONFIG = yaml.safe_load(stream)
+
+        parameter_settings = [dict(zip(MODEL_CONFIG, v)) for v in product(*MODEL_CONFIG.values())]
+    
+        PARAMETER_FILE_NAMES = []
+        for setting in parameter_settings:
+        
+            name_setting = str(setting).replace("'", "").replace(" ", "").replace("{", "").replace("}", "").replace(":", "_").replace(",", "_")
+            param_path = f"{OUT_FOLDER}/evaluation/{test}/{validation}/{model}/parameters/{name_setting}.yaml"
+            
+            if not os.path.isfile(param_path):
+                with open(param_path, "w") as outfile:
+                    yaml.dump(setting, outfile, default_flow_style=False)
+
+            if model in MODEL_PARAMS:
+                if not name_setting in MODEL_PARAMS[model]:
+                    MODEL_PARAMS[model] = [*MODEL_PARAMS[model], name_setting]
+            else:
+                MODEL_PARAMS[model] = [name_setting]
+
+
+    fold_info = CROSS_VALIDATION[fold]
+    
+    with open(f'{OUT_FOLDER}/evaluation/{test}/{validation}/cross_validation_config.yaml', 'w+') as ff:
+        yaml.dump(fold_info, ff, default_flow_style=False)
+
+
+
+rule all:
+    input:
+         expand(OUT_FOLDER + "/evaluation/{model}/{test}.txt", model=MODELS, test=TEST_FOLDER),
+         OUT_FOLDER + "/evaluation/evaluate.txt",
+         expand(OUT_FOLDER + "/evaluation/{model}/evaluate_model.ipynb", model=MODELS),
+         OUT_FOLDER + "/evaluation/model_comparison.ipynb",
+         expand(OUT_FOLDER + "/evaluation/{model}/final_model.pkl", model=MODELS),
+        
+
+
+def training_information_param(wildcards):
+    PARAMS = MODEL_PARAMS[wildcards.model]
+    VALIDATION_FOLDER = TEST_FOLDER[wildcards.test]
+    return expand(OUT_FOLDER + "/evaluation/{test}/{validation}/{model}/checkpoint/{model_param}.pkl",
+                    test=wildcards.test, 
+                    model=wildcards.model,
+                    validation=VALIDATION_FOLDER,
+                    model_param=PARAMS)
+
+
+rule train:
+    input:
+        pyscript=lambda wc: f"../workflows/models/{wc.model.split('_')[0]}.py"
+    output:
+        OUT_FOLDER + "/evaluation/{test}/{validation}/{model}/checkpoint/{model_param}.pkl"
+    params:
+        node = socket.gethostname(),
+        out_folder = OUT_FOLDER,
+    threads: lambda wc: CPU[wc.model.split("_")[0]]
+    resources:
+        mem_mb=lambda wc: MEM[wc.model.split("_")[0]],
+        p=lambda wc: PARTITION[wc.model.split("_")[0]],
+        gpu=lambda wc: GPU[wc.model.split("_")[0]],
+        time=lambda wc: TIME[wc.model.split("_")[0]],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname=lambda wc: wc.model.split("_")[0],
+        tmp=lambda wc: TMP_MEM[wc.model.split("_")[0]]
+    conda: lambda wc: CONDA_ENV[wc.model.split("_")[0]]
+    shell:
+        """
+        echo {params.node}
+        python {input.pyscript} {wildcards.model} {params.out_folder} {wildcards.model_param} {wildcards.validation} {wildcards.test}
+        """
+
+rule dummy1:
+    input:
+        training_information_param
+    output:
+        OUT_FOLDER + "/evaluation/{model}/{test}.txt"
+    params:
+        out_folder = OUT_FOLDER,
+    threads: 1
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=1000,
+        time=10,
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="rule_run",
+        tmp=0
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+        echo 'done' > {params.out_folder}/evaluation/{wildcards.model}/{wildcards.test}.txt
+        sleep 5
+        """
+
+rule dummy2:
+    input:
+        expand(OUT_FOLDER + "/evaluation/{model}/{test}.txt", model=MODELS, test=TEST_FOLDER)
+    output:
+        OUT_FOLDER + "/evaluation/evaluate.txt"
+    params:
+        out_folder = OUT_FOLDER,
+    threads: 1
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=1000,
+        time=10,
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="run_all",
+        tmp=0
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+        echo 'done' > {params.out_folder}/evaluation/evaluate.txt
+        sleep 5
+        """
+
+rule evaluate_model:
+    input:
+        OUT_FOLDER + "/evaluation/evaluate.txt",
+        notebook = "../workflows/evaluate/evaluate_model.ipynb"
+    output:
+        OUT_FOLDER + "/evaluation/{model}/top_model_per_test_sample.csv",
+        notebook = OUT_FOLDER + "/evaluation/{model}/evaluate_model.ipynb"
+    threads: 30
+    params:
+        out_folder = OUT_FOLDER,
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=MEM_RULES["evaluate_model"],
+        time=TIME_RULES["evaluate_model"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="evaluate_model",
+        tmp=TMP_MEM["evaluate_model"]
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+        papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder} -p model {wildcards.model}
+        """
+
+rule transcriptomics_sample:
+    input:
+        OUT_FOLDER + "/evaluation/{model}/top_model_per_test_sample.csv",
+        notebook = "../workflows/evaluate/evaluate_transcriptomics.ipynb"
+    output:
+        notebook = OUT_FOLDER + "/evaluation/{model}/transcriptomics/evaluate_transcriptomics_{sample}.ipynb"
+    threads: 10
+    params:
+        out_folder = OUT_FOLDER,
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=MEM_RULES["transcriptomics_sample"],
+        time=TIME_RULES["transcriptomics_sample"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="transcriptomics_sample",
+        tmp=TMP_MEM["transcriptomics_sample"]
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+        papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder} -p model {wildcards.model} -p sample {wildcards.sample}
+        """
+
+rule transcriptomics_sample_all:
+    input:
+        OUT_FOLDER + "/evaluation/{model}/top_model_per_test_sample.csv",
+        notebook = "../workflows/evaluate/all_evaluate_transcriptomics.ipynb"
+    output:
+        notebook = OUT_FOLDER + "/evaluation/{model}/transcriptomics/all_evaluate_transcriptomics.ipynb"
+    threads: 20
+    params:
+        out_folder = OUT_FOLDER,
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=MEM_RULES["transcriptomics_sample"],
+        time=TIME_RULES["transcriptomics_sample"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="transcriptomics_sample",
+        tmp=TMP_MEM["transcriptomics_sample"]
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+        papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder} -p model {wildcards.model}
+        """
+
+
+rule evaluate_comparison:
+    input:
+        expand(OUT_FOLDER + "/evaluation/{model}/evaluate_model.ipynb", model=MODELS),
+        notebook = "../workflows/evaluate/model_comparison.ipynb",
+    output:
+        notebook = OUT_FOLDER + "/evaluation/model_comparison.ipynb"
+    params:
+        out_folder = OUT_FOLDER,
+    threads: 1
+    resources:
+        gpu="gpu:0",
+        p="compute,gpu",
+        mem_mb=MEM_RULES["model_comparison"],
+        time=TIME_RULES["model_comparison"],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="model_comparison",
+        tmp=TMP_MEM["model_comparison"]
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+       papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder}
+        """
+
+
+rule train_final_model:
+    input:
+        OUT_FOLDER + "/evaluation/model_comparison.ipynb",
+        pyscript = lambda wc: f"../workflows/models/{wc.model.split('_')[0]}.py"
+    output:
+        OUT_FOLDER + "/evaluation/{model}/final_model.pkl"
+    params:
+        node = socket.gethostname(),
+        out_folder = OUT_FOLDER,
+    threads: lambda wc: CPU[wc.model.split("_")[0]]
+    resources:
+        mem_mb=lambda wc: MEM[wc.model.split("_")[0]],
+        p=lambda wc: PARTITION[wc.model.split("_")[0]],
+        gpu=lambda wc: GPU[wc.model.split("_")[0]],
+        time=lambda wc: TIME[wc.model.split("_")[0]],
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname=lambda wc: wc.model.split("_")[0],
+        tmp=lambda wc: TMP_MEM[wc.model.split("_")[0]]
+    conda: lambda wc: CONDA_ENV[wc.model.split("_")[0]]
+    shell:
+        """
+        echo {params.node}
+        python {input.pyscript} {wildcards.model} {params.out_folder}
+        """
+

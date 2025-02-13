@@ -1,0 +1,462 @@
+Fold_1_1:
+  test:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  training:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+Fold_1_2:
+  test:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  training:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  validation:
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+Fold_1_3:
+  test:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  training:
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+Fold_2_1:
+  test:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+Fold_2_2:
+  test:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  validation:
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+Fold_2_3:
+  test:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  training:
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+Fold_3_1:
+  test:
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+Fold_3_2:
+  test:
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  validation:
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+Fold_3_3:
+  test:
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  training:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+Fold_4_1:
+  test:
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+Fold_4_2:
+  test:
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  validation:
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+Fold_4_3:
+  test:
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  training:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+Fold_5_1:
+  test:
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+Fold_5_2:
+  test:
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  validation:
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+Fold_5_3:
+  test:
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  training:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+Fold_6_1:
+  test:
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+Fold_6_2:
+  test:
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  validation:
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+Fold_6_3:
+  test:
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  training:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  validation:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+Fold_7_1:
+  test:
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  validation:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+Fold_7_2:
+  test:
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  training:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  validation:
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+Fold_7_3:
+  test:
+  - MIDEKOG-1-1
+  - MIDEKOG-1-2
+  training:
+  - MELIPIT-1-1
+  - MELIPIT-1-2
+  - MAHEFOG-1-1
+  - MAHEFOG-1-2
+  - MACEGEJ-1-1
+  - MACEGEJ-1-2
+  - MACEGEJ-2-1
+  - MACEGEJ-2-2
+  - MAJOFIJ-2-1
+  - MAJOFIJ-2-2
+  - MAJOFIJ-1-1
+  - MAJOFIJ-1-2
+  validation:
+  - MANOFYB-1-1
+  - MANOFYB-1-2
+  - MAKYGIW-1-1
+  - MAKYGIW-1-2

@@ -1,0 +1,11 @@
+DATASET_NAME:
+    10x_TuPro: Tumor Profiler (n=18)
+    SCCRCC: Kidney cancer (HEST1K) (n=24)
+    COAD: Colon cancer (HEST1K) (n=8)
+#    TLS_data: Kidney/Lung with TLS (n=4)
+    USZ: Kidney/Lung with TLS (n=6)
+    TCGA_SKCM_ffpe: TCGA SKCM (FFPE)
+    TCGA_SKCM_ff: TCGA SKCM (FF)
+    #TCGA_COAD: TCGA COAD
+    TCGA_KIRC_ffpe: TCGA KIRC (FFPE)
+    TCGA_KIRC_ff: TCGA KIRC (FF)

@@ -1,0 +1,16 @@
+epochs:
+    - 350
+    
+batch_size:
+    - 1
+
+n_pos:
+    - 128
+
+dropout:
+    - 0.2
+    - 0.4
+
+heads:
+    - 8
+    - 16

@@ -1,0 +1,16 @@
+epochs:
+    - 100
+    
+batch_size:
+    - 1
+
+n_pos:
+    - 128
+
+n_layers:
+    - 4
+    - 8
+
+dropout:
+    - 0.2
+    - 0.4

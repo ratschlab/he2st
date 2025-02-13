@@ -1,0 +1,164 @@
+SAMPLE:
+    - MANOFYB-1-1
+    - MANOFYB-1-2
+    - MELIPIT-1-1
+    - MELIPIT-1-2
+    - MACEGEJ-1-1
+    - MACEGEJ-1-2
+    
+    - MAJOFIJ-2-1
+    - MAJOFIJ-2-2
+    - MAKYGIW-1-1
+    - MAKYGIW-1-2
+    - MAHEFOG-1-1
+    - MAHEFOG-1-2
+    - MIDEKOG-1-1
+    - MIDEKOG-1-2
+    - MACEGEJ-2-1
+    - MACEGEJ-2-2
+    - MAJOFIJ-1-1
+    - MAJOFIJ-1-2
+
+
+MODEL:
+    - LinearRegression
+    - STNet
+    - DeepSpot
+    - MLP
+    - HisToGene
+    - Hist2ST
+    - THItoGene
+    - BLEEP
+
+IMAGE_FEATURES:
+    - inception
+    - phikon
+    - uni
+    - resnet50
+    - densenet121
+    - hoptimus0
+    - phikonv2
+
+GENE_SET:
+    - GO_Biological_Process_2023 
+    - GO_Cellular_Component_2023
+    - KEGG_2021_Human
+    - MSigDB_Hallmark_2020
+    - GO_Molecular_Function_2023
+    - Reactome_2022
+
+top_n_genes_to_predict: 5000
+top_n_genes_to_evaluate: 100
+n_mini_tiles: 9
+
+DATASET: "10x_TuPro"
+OUT_FOLDER: "out_benchmark"
+
+DOWNSAMPLE_FACTOR: 32
+IMAGE_FORMAT: "tif"
+
+
+known_genes:
+    TGFB1
+    RNA5S16
+    MIR6072
+    MITF
+    PLEKHA5
+    SOX10
+    POP1
+    PHIP
+    PDCD2
+    TP53
+    SMARCB1
+    ZNF396
+    EGFR
+    NRAS
+    KNSTRN
+    AKT1
+    RGS22
+    MIR4659A
+    MIA
+    KIR3DP1
+    RASSF8
+    MIR4433B
+    PLAAT4
+    OVOL1
+    MC1R
+    TFDP3
+    GNAQ
+    SNORA74A
+    SPRR1A
+    PKIG
+    EZH2
+    BAP1
+    CD274
+    NOTCH1
+    MIR5196
+    ZNF492
+    LYPD5
+    IGF1R
+    RTL3
+    RASSF3
+    PDE2A
+    MAGEC2
+    TP63
+    VDR
+    MIR5580
+    MMP2
+    SAMD4B
+    PTCH1
+    PYCR2
+    TMC8
+    BRAF
+    TMC6
+    MMP9
+    VEGFA
+    SEZ6L
+    NKPD1
+    CYLD
+    RNF148
+    PIK3CA
+    CDK4
+    NDUFS6
+    RASA2
+    BCL2
+    SP6
+    NFKBIE
+    MIR3151
+    ABCB5
+    DDX43
+    SECTM1
+    MLANA
+    TERT
+    ERBB2
+    ME2
+    CTLA4
+    ZNF100
+    CDKN2A
+    SCD5
+    STAT3
+    XAGE1B
+    MIR365A
+    MTOR
+    MIB2
+    KPNB1
+    KIT
+    DCT
+    TLL2
+    KRAS
+    NPIPB8
+    NCAN
+    SYCP1
+    ASIP
+    CTNNB1
+    ZBTB49
+    PTEN
+    GNA11
+    CXCR4
+    POLD2
+    RNA5S3
+    RAC1
+    POC1A
+
+
+    
