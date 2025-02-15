@@ -110,7 +110,14 @@ Please ensure that you download the weights for the pathology foundation models 
 In case you found our work useful, please consider citing us:
 
 ```
-tbd
+@article{nonchev2025deepspot,
+  title={DeepSpot: Leveraging Spatial Context for Enhanced Spatial Transcriptomics Prediction from H\&E Images},
+  author={Nonchev, Kalin and Dawo, Sebastian and Silina, Karina and Moch, Holger and Andani, Sonali and Tumor Profiler Consortium and Koelzer, Viktor H and Raetsch, Gunnar},
+  journal={medRxiv},
+  pages={2025--02},
+  year={2025},
+  publisher={Cold Spring Harbor Laboratory Press}
+}
 ```
 
 The code for reproducing the paper results can be found [here](https://github.com/ratschlab/st-rep).
