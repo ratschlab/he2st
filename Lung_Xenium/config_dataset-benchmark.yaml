@@ -1,0 +1,86 @@
+SAMPLE:
+   - NCBI884
+   - NCBI883
+   - NCBI882
+   - NCBI879
+   - NCBI876
+   - NCBI875
+   - NCBI873
+   - NCBI870
+   - NCBI866
+   - NCBI865
+   - NCBI864
+   - NCBI861
+   - NCBI860
+   - NCBI859
+   - NCBI858
+   - NCBI857
+   - NCBI856
+
+SAMPLE_LQ:
+    - NCBI880
+    - NCBI867
+    - NCBI881
+
+MODEL:
+    - DeepCell
+    - STNet_cell
+    - BLEEP_cell
+
+IMAGE_FEATURES:
+    - inception
+    - phikon
+    - uni
+    - resnet50
+    - densenet121
+    - hoptimus0
+    - phikonv2
+
+CELL_DIEMETER:
+    - 120
+    - 180
+    - 240
+
+GENE_SET:
+    - GO_Biological_Process_2023 
+    - GO_Cellular_Component_2023
+    - KEGG_2021_Human
+    - MSigDB_Hallmark_2020
+    - GO_Molecular_Function_2023
+    - Reactome_2022
+
+gene_interval:
+    - 50
+    - 100
+    - 200
+    - 300
+
+top_n_genes_to_predict: 300
+top_n_genes_to_evaluate: 100
+
+DATASET: "Lung_Xenium"
+OUT_FOLDER: "out_benchmark"
+
+DOWNSAMPLE_FACTOR: 10
+IMAGE_FORMAT: "tif"
+
+known_genes:
+
+genes_of_interest:
+  - HEY1
+  - ACKR1
+  - CCL21
+  - CA4
+  - FCN3
+  - APLNR
+  - COL1A1
+  - POSTN
+  - CTHRC1
+  - MSLN
+  - WNT5A
+  - ACTA2
+  - MFAP5
+  - CSPG4
+  - PTGDS
+  - PLIN2
+

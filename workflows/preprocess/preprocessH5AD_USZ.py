@@ -1,4 +1,3 @@
-from src.preprocess_utils.preprocess_image import get_low_res_image
 from aestetik.utils.utils_transcriptomics import preprocess_adata
 from sklearn.metrics.cluster import adjusted_rand_score
 from tqdm import tqdm
@@ -15,6 +14,7 @@ import cv2
 
 import sys
 sys.path.append('../')
+from src.preprocess_utils.preprocess_image import get_low_res_image
 
 sample = str(sys.argv[1])
 downsample_factor = int(sys.argv[2])
@@ -95,8 +95,10 @@ adata = adata[adata.obs["blur_score"] > 10, :]
 # clusters = adata.obs.ground_truth.value_counts()[adata.obs.ground_truth.value_counts() / len(adata) >= 0.01].index.values
 # adata = adata[adata.obs.ground_truth.isin(clusters),:] # remove rare clusters 1% (noise)
 adata = adata.copy()
-print("ground_truth loaded...")
-if isinstance(adata.X, if)    pass
+
+if isinstance(adata.X, np.ndarray):
+    pass
 else:
     adata.X = adata.X.toarray()
+    
 adata.write_h5ad(adata_out)

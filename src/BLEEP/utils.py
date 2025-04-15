@@ -4,15 +4,23 @@ from tqdm import tqdm
 import torch.nn.functional as F
 
 
-def find_matches(spot_embeddings, query_embeddings, top_k=1):
+def find_matches(spot_embeddings, query_embeddings, top_k=1, batch_size=8192):
     # find the closest matches
     spot_embeddings = torch.tensor(spot_embeddings)
     query_embeddings = torch.tensor(query_embeddings)
     query_embeddings = F.normalize(query_embeddings, p=2, dim=-1)
     spot_embeddings = F.normalize(spot_embeddings, p=2, dim=-1)
-    dot_similarity = query_embeddings @ spot_embeddings.T
-    _, indices = torch.topk(dot_similarity.squeeze(0), k=top_k)
-    return indices.cpu().numpy()
+
+    all_indices = []
+
+    # Process queries in batches
+    for i in range(0, query_embeddings.size(0), batch_size):
+        batch_queries = query_embeddings[i:i + batch_size]  # shape: (B, D)
+        dot_similarity = batch_queries @ spot_embeddings.T  # shape: (B, N)
+        _, indices = torch.topk(dot_similarity, k=top_k, dim=-1)  # shape: (B, top_k)
+        all_indices.append(indices)
+
+    return torch.cat(all_indices, dim=0).cpu().numpy()  # shape: (num_queries, top_k)
 
 
 def _run_inference_from_dataloader(model, dataloader):

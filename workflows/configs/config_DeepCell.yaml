@@ -1,0 +1,26 @@
+image_feature_model:
+    - hoptimus0
+    - uni
+    - phikon
+    
+cell_diameter:
+    - 120
+    - 180
+radius_neighbors:
+    - 80
+    - 100
+cell_context:
+    - cell_neighbors
+epochs:
+    - 4
+loss_func:
+    - mse
+batch_size:
+    - 1024
+res:
+    - 1
+resample_samples:
+    - 0
+gene_norm:
+    - null
+    - standard

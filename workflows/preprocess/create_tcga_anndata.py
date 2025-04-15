@@ -1,3 +1,6 @@
+import pyvips
+from openslide import open_slide
+
 import glob
 import yaml
 import json
@@ -7,13 +10,14 @@ import math
 import anndata as ad
 import scanpy as sc
 import pandas as pd
-from openslide import open_slide
-from src.preprocess_utils.preprocess_image import get_low_res_image
+
+
 import numpy as np
 from IPython.display import Image
-import pyvips
+
 import sys
 sys.path.append('../')
+from src.preprocess_utils.preprocess_image import get_low_res_image
 
 format_to_dtype = {
     'uchar': np.uint8,

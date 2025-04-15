@@ -17,3 +17,9 @@ huggingface*
 *not_*
 HF*
 DeepSpot
+IDC
+PAAD
+workflows/configs/config_DeepCell_*
+cell_size_Lung_Xenium
+USZ_test
+DeepCell

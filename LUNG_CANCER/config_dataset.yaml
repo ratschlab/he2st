@@ -1,0 +1,86 @@
+SAMPLE:
+   
+   - P10-B1
+   - P10-B2
+   - P10-T1
+   - P10-T2
+   - P10-T3
+   - P10-T4
+   
+   - P11-B1
+   - P11-B2
+   - P11-T1
+   - P11-T2
+   - P11-T3
+   - P11-T4
+   
+   - P15-B1
+   - P15-B2
+   - P15-T1
+   - P15-T2
+   
+   - P16-B1
+   - P16-B2
+   - P16-T1
+   - P16-T2
+   
+   - P17-B1
+   - P17-B2
+   - P17-T1
+   - P17-T2
+   
+   - P19-B1
+   - P19-B2
+   - P19-T1
+   - P19-T2
+   
+   - P24-B1
+   - P24-B2
+   - P24-T1
+   - P24-T2
+   
+   - P25-B1
+   - P25-B2
+   - P25-T1
+   - P25-T2
+
+MODEL:
+    - LinearRegression
+    - STNet
+    - DeepSpot
+    - MLP
+    - HisToGene
+    - Hist2ST
+    - THItoGene
+    - BLEEP
+
+IMAGE_FEATURES:
+    - inception
+    - phikon
+    - uni
+    - resnet50
+    - densenet121
+    - hoptimus0
+    - phikonv2
+
+GENE_SET:
+    - GO_Biological_Process_2023 
+    - GO_Cellular_Component_2023
+    - KEGG_2021_Human
+    - MSigDB_Hallmark_2020
+    - GO_Molecular_Function_2023
+    - Reactome_2022
+
+top_n_genes_to_predict: 5000
+top_n_genes_to_evaluate: 100
+n_mini_tiles: 9
+
+DATASET: "LUNG_CANCER"
+OUT_FOLDER: "out_benchmark"
+
+DOWNSAMPLE_FACTOR: 10
+IMAGE_FORMAT: "tif"
+
+
+known_genes:
+    

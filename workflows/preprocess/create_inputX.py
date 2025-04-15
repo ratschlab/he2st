@@ -1,4 +1,3 @@
-from src.utils import select_highly_variable_genes
 from tqdm import tqdm
 import anndata as ad
 import pandas as pd
@@ -13,7 +12,7 @@ import yaml
 
 import sys
 sys.path.append('../')
-
+from src.utils import select_highly_variable_genes
 
 def reorder_genes(adata, gene_name_idx):
     adata = adata.copy()
@@ -30,12 +29,14 @@ with open("config_dataset.yaml", "r") as stream:
     config_dataset = yaml.safe_load(stream)
 
 samples = set(config_dataset["SAMPLE"])
+present_genes = [sc.read_h5ad(f"out_benchmark/data/h5ad/{s}.h5ad", backed="r").var_names.values for s in samples]
+present_genes = sorted({gene for sublist in present_genes for gene in sublist})
 
 df = pd.read_csv("/cluster/home/knonchev/code/projects2024-cell-embeddings/data/metadata/hg38_gtf.csv")
 df = df[~df.gene_name.isna()]
 df = df[~df.gene_name.duplicated()]
 gene_name = df.gene_name.values  # protein coding genes
-
+gene_name = [g for g in gene_name if g in present_genes] # keep only protein coding genes that are observed in the training set
 adatas = []
 old_adatas = []
 for sample in samples:

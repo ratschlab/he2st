@@ -1,19 +1,21 @@
 import matplotlib.pyplot as plt
 import torch
 import lightning as L
-from src.loss_function import loss_function
-from src.HisToGene.model import HisToGene
-from src.HisToGene.dataloader import HisToGeneCustomDataLoader
-from src.morphology_model import get_morphology_model_and_preprocess
-from src.HisToGene.utils import run_inference_from_dataloader
-from src.utils import plot_loss_values
+
 from lightning.pytorch.callbacks.early_stopping import EarlyStopping
-from src.utils import load_data
+
 import pandas as pd
 import numpy as np
 import yaml
 import sys
 sys.path.append('../')
+from src.utils import load_data
+
+from src.HisToGene.model import HisToGene
+from src.HisToGene.dataloader import HisToGeneCustomDataLoader
+from src.morphology_model import get_morphology_model_and_preprocess
+from src.HisToGene.utils import run_inference_from_dataloader
+from src.utils import plot_loss_values
 
 
 model = str(sys.argv[1])

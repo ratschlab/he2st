@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import glob
 from sklearn.preprocessing import MinMaxScaler
-from src.utils import preprocess_adata
+
 from pickle import load
 import yaml
 import json
@@ -14,20 +14,24 @@ import scanpy as sc
 import pandas as pd
 from openslide import open_slide
 import torch
-from src.morphology_model import get_morphology_model_and_preprocess
-from src.preprocess_utils.preprocess_image import BLEEP_predict_spatial_transcriptomics_from_image_path
-from src.preprocess_utils.preprocess_image import THItoGene_predict_spatial_transcriptomics_from_image_path
-from src.preprocess_utils.preprocess_image import Hist2ST_predict_spatial_transcriptomics_from_image_path
-from src.preprocess_utils.preprocess_image import HisToGene_predict_spatial_transcriptomics_from_image_path
-from src.preprocess_utils.preprocess_image import sklearn_predict_spatial_transcriptomics_from_image_path
-from deepspot.utils.utils_image import predict_spatial_transcriptomics_from_image_path
-from src.preprocess_utils.preprocess_image import get_low_res_image
+
 import numpy as np
 from IPython.display import Image
 import pyvips
 import openslide
 import sys
 sys.path.append('../')
+
+from src.utils import preprocess_adata
+from src.morphology_model import get_morphology_model_and_preprocess
+from src.preprocess_utils.preprocess_image import BLEEP_predict_spatial_transcriptomics_from_image_path
+from src.preprocess_utils.preprocess_image import THItoGene_predict_spatial_transcriptomics_from_image_path
+from src.preprocess_utils.preprocess_image import Hist2ST_predict_spatial_transcriptomics_from_image_path
+from src.preprocess_utils.preprocess_image import HisToGene_predict_spatial_transcriptomics_from_image_path
+from src.preprocess_utils.preprocess_image import sklearn_predict_spatial_transcriptomics_from_image_path
+from deepspot.utils.utils_image import predict_spot_spatial_transcriptomics_from_image_path
+from deepspot.utils.utils_image import predict_cell_spatial_transcriptomics_from_image_path
+from src.preprocess_utils.preprocess_image import get_low_res_image
 
 
 format_to_dtype = {
@@ -55,7 +59,7 @@ adata_in = f'{out_folder}/data/h5ad/{sample}.h5ad'
 adata_out = f'{out_folder}/prediction/{model}/data/h5ad/{sample}.h5ad'
 json_path = f'{out_folder}/data/meta/{sample}.json'
 
-if model in ["THItoGene", "HisToGene", "Hist2ST"]:
+if model.split("_")[0] in ["THItoGene", "HisToGene", "Hist2ST"]:
     device = torch.device('cpu')
 else:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -64,7 +68,8 @@ else:
 json_info = json.load(open(json_path))
 image_path = json_info['image_path'] if "image_path" in json_info else glob.glob(
     f"{out_folder}/data/image/{sample}*")[0]
-spot_diameter = json_info['spot_diameter_fullres']
+
+spot_diameter = json_info.get('spot_diameter_fullres', None)
 
 genes = pd.read_csv(f"../{source_data_path}/out_benchmark/info_highly_variable_genes.csv")
 selected_genes_bool = genes.isPredicted.values
@@ -72,19 +77,29 @@ selected_genes_bool = genes.isPredicted.values
 with open(model_config_path, "r") as stream:
     MODEL_PARAM = yaml.safe_load(stream)
 
+cell_diameter = MODEL_PARAM.get('cell_diameter', None)
+
+if spot_diameter:
+    diameter = spot_diameter
+else:
+    diameter = cell_diameter
+
+
 image_feature_model = MODEL_PARAM.get("image_feature_model", None)
 spot_context = MODEL_PARAM.get('spot_context', None)
+cell_context = MODEL_PARAM.get('cell_context', None)
 top_k = MODEL_PARAM.get('top_k', None)
+radius_neighbors = MODEL_PARAM.get('radius_neighbors', None)
 
 with open(f"../{source_data_path}/config_dataset.yaml", "r") as stream:
     config_dataset_source = yaml.safe_load(stream)
 
-n_mini_tiles = config_dataset_source['n_mini_tiles']
+n_mini_tiles = config_dataset_source.get('n_mini_tiles', None)
 training_samples = config_dataset_source.get("SAMPLE", None)
 
 # LOAD EXPRESSION MODEL
 
-if model in ["DeepSpot", "HisToGene", "THItoGene", "Hist2ST", "BLEEP"]:  # pytorch
+if model.split("_")[0] in ["DeepSpot", "DeepCell", "HisToGene", "THItoGene", "Hist2ST", "BLEEP"]:  # pytorch
     model_expression = torch.load(model_path, map_location=device)
     model_expression.to(device)
     model_expression.eval()
@@ -116,41 +131,51 @@ adata.obs.index = adata.obs.index.astype(str)
 
 
 if model == "DeepSpot":
-    counts = predict_spatial_transcriptomics_from_image_path(image_path,
-                                                             adata,
-                                                             spot_diameter,
-                                                             n_mini_tiles,
-                                                             preprocess,
-                                                             morphology_model,
-                                                             model_expression,
-                                                             device,
-                                                             super_resolution=False,
-                                                             neighbor_radius=1)
-elif model == "HisToGene":
+    counts = predict_spot_spatial_transcriptomics_from_image_path(image_path,
+                                                                 adata,
+                                                                 diameter,
+                                                                 n_mini_tiles,
+                                                                 preprocess,
+                                                                 morphology_model,
+                                                                 model_expression,
+                                                                 device,
+                                                                 super_resolution=False,
+                                                                 neighbor_radius=1)
+
+elif model  == "DeepCell":
+    counts = predict_cell_spatial_transcriptomics_from_image_path(image_path, 
+                                                    adata,
+                                                    diameter,
+                                                    radius_neighbors,
+                                                    preprocess, 
+                                                    morphology_model, 
+                                                    model_expression, 
+                                                    device)
+        
+elif model.split("_")[0] == "HisToGene":
     counts = HisToGene_predict_spatial_transcriptomics_from_image_path(image_path,
                                                                        adata,
-                                                                       spot_diameter,
+                                                                       diameter,
                                                                        preprocess,
                                                                        model_expression,
                                                                        device)
-elif model == "Hist2ST":
+elif model.split("_")[0] == "Hist2ST":
     counts = Hist2ST_predict_spatial_transcriptomics_from_image_path(image_path,
                                                                      adata,
-                                                                     spot_diameter,
+                                                                     diameter,
                                                                      preprocess,
                                                                      model_expression,
                                                                      device)
-elif model == "THItoGene":
+elif model.split("_")[0] == "THItoGene":
     counts = THItoGene_predict_spatial_transcriptomics_from_image_path(image_path,
                                                                        adata,
-                                                                       spot_diameter,
+                                                                       diameter,
                                                                        preprocess,
                                                                        model_expression,
                                                                        device)
-elif model == "BLEEP":
+elif model.split("_")[0] == "BLEEP":
     counts = BLEEP_predict_spatial_transcriptomics_from_image_path(image_path,
                                                                    adata,
-                                                                   spot_diameter,
                                                                    preprocess,
                                                                    selected_genes_bool=selected_genes_bool,
                                                                    training_samples=training_samples,
@@ -159,11 +184,14 @@ elif model == "BLEEP":
                                                                    image_feature_model=image_feature_model,
                                                                    model_expression=model_expression,
                                                                    top_k=top_k,
-                                                                   device=device)
+                                                                   device=device,
+                                                                   cell_diameter=cell_diameter,
+                                                                   spot_diameter=spot_diameter
+                                                                  )
 else:
     counts = sklearn_predict_spatial_transcriptomics_from_image_path(image_path,
                                                                      adata,
-                                                                     spot_diameter,
+                                                                     diameter,
                                                                      preprocess,
                                                                      morphology_model,
                                                                      model_expression,

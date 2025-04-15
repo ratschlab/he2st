@@ -1,0 +1,1008 @@
+Fold_10_1:
+  test:
+  - NCBI865
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI859
+  - NCBI882
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI860
+  - NCBI883
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_10_2:
+  test:
+  - NCBI865
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI883
+  - NCBI882
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI859
+  - NCBI864
+Fold_10_3:
+  test:
+  - NCBI865
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI882
+  - NCBI858
+  - NCBI861
+Fold_11_1:
+  test:
+  - NCBI866
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI859
+  - NCBI882
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI860
+  - NCBI883
+  - NCBI865
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_11_2:
+  test:
+  - NCBI866
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI883
+  - NCBI882
+  - NCBI865
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI859
+  - NCBI864
+Fold_11_3:
+  test:
+  - NCBI866
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI882
+  - NCBI858
+  - NCBI861
+Fold_12_1:
+  test:
+  - NCBI858
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI860
+  - NCBI883
+  - NCBI865
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_12_2:
+  test:
+  - NCBI858
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI883
+  - NCBI882
+  - NCBI865
+  - NCBI866
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI859
+  - NCBI864
+Fold_12_3:
+  test:
+  - NCBI858
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI882
+  - NCBI866
+  - NCBI861
+Fold_13_1:
+  test:
+  - NCBI879
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI860
+  - NCBI883
+  - NCBI865
+  - NCBI858
+  - NCBI875
+  - NCBI876
+Fold_13_2:
+  test:
+  - NCBI879
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI883
+  - NCBI882
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI859
+  - NCBI864
+Fold_13_3:
+  test:
+  - NCBI879
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI858
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI882
+  - NCBI866
+  - NCBI861
+Fold_14_1:
+  test:
+  - NCBI861
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  validation:
+  - NCBI860
+  - NCBI883
+  - NCBI865
+  - NCBI858
+  - NCBI875
+  - NCBI876
+Fold_14_2:
+  test:
+  - NCBI861
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI883
+  - NCBI882
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI859
+  - NCBI864
+Fold_14_3:
+  test:
+  - NCBI861
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI858
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI882
+  - NCBI866
+  - NCBI879
+Fold_15_1:
+  test:
+  - NCBI864
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI861
+  validation:
+  - NCBI860
+  - NCBI883
+  - NCBI865
+  - NCBI858
+  - NCBI875
+  - NCBI876
+Fold_15_2:
+  test:
+  - NCBI864
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI883
+  - NCBI882
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI859
+  - NCBI861
+Fold_15_3:
+  test:
+  - NCBI864
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI882
+  - NCBI866
+  - NCBI879
+Fold_16_1:
+  test:
+  - NCBI875
+  - NCBI876
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI861
+  validation:
+  - NCBI860
+  - NCBI883
+  - NCBI865
+  - NCBI858
+  - NCBI864
+Fold_16_2:
+  test:
+  - NCBI875
+  - NCBI876
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI883
+  - NCBI882
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI864
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI859
+  - NCBI861
+Fold_16_3:
+  test:
+  - NCBI875
+  - NCBI876
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI882
+  - NCBI866
+  - NCBI879
+Fold_1_1:
+  test:
+  - NCBI870
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI860
+  - NCBI882
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI883
+  - NCBI859
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_1_2:
+  test:
+  - NCBI870
+  training:
+  - NCBI857
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI882
+  - NCBI864
+Fold_1_3:
+  test:
+  - NCBI870
+  training:
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI883
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI860
+  - NCBI865
+  - NCBI858
+  - NCBI861
+Fold_2_1:
+  test:
+  - NCBI857
+  training:
+  - NCBI870
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI860
+  - NCBI882
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI883
+  - NCBI859
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_2_2:
+  test:
+  - NCBI857
+  training:
+  - NCBI870
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI882
+  - NCBI864
+Fold_2_3:
+  test:
+  - NCBI857
+  training:
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI883
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI860
+  - NCBI865
+  - NCBI858
+  - NCBI861
+Fold_3_1:
+  test:
+  - NCBI873
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI884
+  - NCBI856
+  - NCBI860
+  - NCBI882
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI883
+  - NCBI859
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_3_2:
+  test:
+  - NCBI873
+  training:
+  - NCBI870
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI884
+  - NCBI856
+  - NCBI882
+  - NCBI864
+Fold_3_3:
+  test:
+  - NCBI873
+  training:
+  - NCBI857
+  - NCBI884
+  - NCBI856
+  - NCBI883
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI860
+  - NCBI865
+  - NCBI858
+  - NCBI861
+Fold_4_1:
+  test:
+  - NCBI884
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI856
+  - NCBI860
+  - NCBI882
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI883
+  - NCBI859
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_4_2:
+  test:
+  - NCBI884
+  training:
+  - NCBI870
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI856
+  - NCBI882
+  - NCBI864
+Fold_4_3:
+  test:
+  - NCBI884
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI856
+  - NCBI883
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI860
+  - NCBI865
+  - NCBI858
+  - NCBI861
+Fold_5_1:
+  test:
+  - NCBI856
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI882
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI883
+  - NCBI859
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_5_2:
+  test:
+  - NCBI856
+  training:
+  - NCBI870
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI882
+  - NCBI864
+Fold_5_3:
+  test:
+  - NCBI856
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI883
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI860
+  - NCBI865
+  - NCBI858
+  - NCBI861
+Fold_6_1:
+  test:
+  - NCBI860
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI882
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI883
+  - NCBI859
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_6_2:
+  test:
+  - NCBI860
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI883
+  - NCBI859
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI882
+  - NCBI864
+Fold_6_3:
+  test:
+  - NCBI860
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI883
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI865
+  - NCBI858
+  - NCBI861
+Fold_7_1:
+  test:
+  - NCBI883
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI882
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI860
+  - NCBI859
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_7_2:
+  test:
+  - NCBI883
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI859
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI882
+  - NCBI864
+Fold_7_3:
+  test:
+  - NCBI883
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI859
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI865
+  - NCBI858
+  - NCBI861
+Fold_8_1:
+  test:
+  - NCBI859
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI882
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI860
+  - NCBI883
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_8_2:
+  test:
+  - NCBI859
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI883
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI882
+  - NCBI864
+Fold_8_3:
+  test:
+  - NCBI859
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI883
+  - NCBI882
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI865
+  - NCBI858
+  - NCBI861
+Fold_9_1:
+  test:
+  - NCBI882
+  training:
+  - NCBI870
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI856
+  - NCBI859
+  - NCBI865
+  - NCBI858
+  - NCBI861
+  - NCBI864
+  validation:
+  - NCBI860
+  - NCBI883
+  - NCBI866
+  - NCBI879
+  - NCBI875
+  - NCBI876
+Fold_9_2:
+  test:
+  - NCBI882
+  training:
+  - NCBI870
+  - NCBI856
+  - NCBI860
+  - NCBI883
+  - NCBI865
+  - NCBI866
+  - NCBI858
+  - NCBI879
+  - NCBI861
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI859
+  - NCBI864
+Fold_9_3:
+  test:
+  - NCBI882
+  training:
+  - NCBI857
+  - NCBI873
+  - NCBI884
+  - NCBI860
+  - NCBI883
+  - NCBI859
+  - NCBI866
+  - NCBI879
+  - NCBI864
+  - NCBI875
+  - NCBI876
+  validation:
+  - NCBI870
+  - NCBI856
+  - NCBI865
+  - NCBI858
+  - NCBI861

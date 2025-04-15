@@ -1,4 +1,4 @@
-from src.utils import load_data
+
 from sklearn.neural_network import MLPRegressor
 from pickle import dump
 import multiprocessing
@@ -6,8 +6,8 @@ import pandas as pd
 import numpy as np
 import yaml
 import sys
-sys.path.append('../')
 
+from deepspot.utils.utils_dataloader import load_data
 
 model = str(sys.argv[1])
 out_folder = str(sys.argv[2])
@@ -39,12 +39,16 @@ else:
     training_samples_set = all_samples
 
 
+cell_diameter = param.get("cell_diameter", None)
+if "cell_diameter" in param:
+    del param["cell_diameter"]
+
 if len(sys.argv) >= 4:
-    training_data = load_data(training_samples_set, out_folder, param["image_feature_model"])
-    validation_data = load_data(validation_samples_set, out_folder, param["image_feature_model"])
-    test_data = load_data(test_samples_set, out_folder, param["image_feature_model"])
+    training_data = load_data(training_samples_set, out_folder, param["image_feature_model"], cell_diameter=cell_diameter)
+    validation_data = load_data(validation_samples_set, out_folder, param["image_feature_model"], cell_diameter=cell_diameter)
+    test_data = load_data(test_samples_set, out_folder, param["image_feature_model"], cell_diameter=cell_diameter)
 else:
-    training_data = load_data(all_samples, out_folder, param["image_feature_model"])
+    training_data = load_data(all_samples, out_folder, param["image_feature_model"], cell_diameter=cell_diameter)
 
 del param["image_feature_model"]
 

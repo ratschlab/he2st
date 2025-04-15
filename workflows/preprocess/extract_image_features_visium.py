@@ -1,8 +1,6 @@
 from tqdm import tqdm
 import torch
 import os
-from src.preprocess_utils.preprocess_image import compute_mini_tiles
-from src.morphology_model import get_morphology_model_and_preprocess
 import pyvips
 import pandas as pd
 import scanpy as sc
@@ -11,6 +9,9 @@ import json
 import glob
 import sys
 sys.path.append('../')
+from src.preprocess_utils.preprocess_image import compute_mini_tiles
+from src.morphology_model import get_morphology_model_and_preprocess
+from deepspot.utils.utils_image import crop_tile
 
 format_to_dtype = {
     'uchar': np.uint8,
@@ -34,7 +35,7 @@ adata_in = f"{out_folder}/data/h5ad/{sample}.h5ad"
 json_path = f"{out_folder}/data/meta/{sample}.json"
 img_path = glob.glob(f"{out_folder}/data/image/{sample}*")[0]
 
-image_feature_model_features_out = f"{out_folder}/data/image_features/{sample}_{image_feature_model}.pkl"
+image_feature_model_features_out = f"{out_folder}/data/image_features/{image_feature_model}/{sample}.pkl"
 
 adata = sc.read_h5ad(adata_in)
 
@@ -56,22 +57,15 @@ y_pixel = adata.obs.y_pixel
 image = pyvips.Image.new_from_file(img_path)
 main_features = np.zeros([len(adata), feature_dim])
 
-for i, (b, x, y) in tqdm(enumerate(zip(barcode, y_pixel, x_pixel))):  # x and y switched
+for i, (b, x, y) in tqdm(enumerate(zip(barcode, x_pixel, y_pixel))):  # x and y switched
 
-    x = x - int(spot_diameter_fullres // 2)
-    y = y - int(spot_diameter_fullres // 2)
-
-    spot = image.crop(x, y, spot_diameter_fullres, spot_diameter_fullres)
-    main_tile = np.ndarray(buffer=spot.write_to_memory(),
-                           dtype=format_to_dtype[spot.format],
-                           shape=[spot.height, spot.width, spot.bands])
-
+    main_tile = crop_tile(image, x, y, spot_diameter_fullres)
     preprocess_main_tile = preprocess(main_tile)
 
     X = np.zeros([n_mini_tiles + 1, 3, preprocess_main_tile.shape[1], preprocess_main_tile.shape[1]])
     X[0, :] = preprocess_main_tile
 
-    mini_tiles = compute_mini_tiles(main_tile, 4)
+    mini_tiles = compute_mini_tiles(main_tile, n_mini_tiles)
 
     for j, mini_tile in enumerate(mini_tiles):
 
@@ -88,7 +82,7 @@ for i, (b, x, y) in tqdm(enumerate(zip(barcode, y_pixel, x_pixel))):  # x and y 
 
     main_features[i, :] = output[0]
 
-    np.save(f"{out_folder}/data/image_features/{image_feature_model}/{b}_{sample}.npy", output)
+    np.save(f"{out_folder}/data/image_features/{image_feature_model}/{sample}/{b}.npy", output)
 
 main_features = pd.DataFrame(main_features, index=adata.obs.index)
 main_features.index = [f"{b}_{sample}" for b in main_features.index]

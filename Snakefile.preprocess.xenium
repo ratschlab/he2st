@@ -23,12 +23,11 @@ else:
     SAMPLES = DATASET_INFO["SAMPLE"]
 
 SAMPLE_HQ = DATASET_INFO["SAMPLE"]
-
+CELL_DIEMETER = DATASET_INFO["CELL_DIEMETER"]
 IMAGE_FORMAT = DATASET_INFO["IMAGE_FORMAT"]
 IMAGE_FEATURES = DATASET_INFO["IMAGE_FEATURES"]
 DOWNSAMPLE_FACTOR = DATASET_INFO["DOWNSAMPLE_FACTOR"]
 TOP_N_GENES_TO_PREDICT = DATASET_INFO["top_n_genes_to_predict"]
-N_MINI_TILES = DATASET_INFO["n_mini_tiles"]
 
 with open("../Snakemake_info.yaml", "r") as stream:
     SNAKEMAKE_INFO = yaml.safe_load(stream)
@@ -55,8 +54,10 @@ folders_to_create = [
 for folder in folders_to_create:
     Path(f"{OUT_FOLDER}/{folder}").mkdir(parents=True, exist_ok=True)
     if folder == "data/image_features":
-        for image_model in IMAGE_FEATURES:
-            Path(f"{OUT_FOLDER}/{folder}/{image_model}").mkdir(parents=True, exist_ok=True)
+        for diameter in CELL_DIEMETER:
+            for sample in SAMPLES:
+                for image_model in IMAGE_FEATURES:
+                    Path(f"{OUT_FOLDER}/{folder}/{image_model}_{diameter}/{sample}").mkdir(parents=True, exist_ok=True)
 
 
 ####################################################################################
@@ -70,9 +71,8 @@ rule all:
     input:
         expand(OUT_FOLDER + "/data/h5ad/{sample}.h5ad", sample=SAMPLES),
         expand(OUT_FOLDER + "/data/image/{sample}." + IMAGE_FORMAT, sample=SAMPLES),
-        expand(OUT_FOLDER + "/data/image_features/{sample}_{image_feature}.pkl", sample=SAMPLES, image_feature=IMAGE_FEATURES),
+         expand(OUT_FOLDER + "/data/image_features/{image_feature}_{cell_diameter}/{sample}.pkl", sample=SAMPLES, image_feature=IMAGE_FEATURES, cell_diameter=CELL_DIEMETER),
         expand(OUT_FOLDER + "/data/meta/{sample}.json", sample=SAMPLES),
-        expand(OUT_FOLDER + "/data/tiles/{sample}.npy", sample=SAMPLES),
         expand(OUT_FOLDER + "/data/inputX/{sample}.pkl", sample=SAMPLE_HQ),
         OUT_FOLDER + "/info_highly_variable_genes.csv",
 
@@ -113,7 +113,7 @@ rule structureData:
     input:
         pyscript = f"../workflows/preprocess/structure_data_{DATASET}.py"
     output:
-        OUT_FOLDER + "/data/image/{sample}." + IMAGE_FORMAT,
+        OUT_FOLDER + "/data/image/{sample}.tif",
         OUT_FOLDER + "/data/meta/{sample}.json",
     params:
         out_folder = OUT_FOLDER
@@ -136,17 +136,14 @@ rule structureData:
 rule extract_image_features:
     input:
         OUT_FOLDER + "/data/h5ad/{sample}.h5ad",
-        OUT_FOLDER + "/data/image/{sample}." + IMAGE_FORMAT,
-        OUT_FOLDER + "/data/meta/{sample}.json",
-        pyscript = "../workflows/preprocess/extract_image_features.py"
+        OUT_FOLDER + "/data/image/{sample}.tif",
+        pyscript = "../workflows/preprocess/extract_image_features_xenium.py"
     output:
-        OUT_FOLDER + "/data/image_features/{sample}_{image_feature}.pkl"
+        OUT_FOLDER + "/data/image_features/{image_feature}_{cell_diameter}/{sample}.pkl"
     params:
-        ratio = 1.3,
-        n_mini_tiles = N_MINI_TILES,
         node = socket.gethostname(),
         out_folder = OUT_FOLDER
-    threads: 1
+    threads: 4
     resources:
         p="gpu",
         gpu="gpu:1",
@@ -156,39 +153,11 @@ rule extract_image_features:
         jobname="extract_image_features",
         tmp=TMP_MEM["extract_image_features"]
     conda: "nonchev"
-    benchmark: OUT_FOLDER + "/benchmarks/extract_image_features/{sample}_{image_feature}.log"
     shell:
         """
+        echo "GPU UUID: $(nvidia-smi -q | grep 'GPU UUID')"
         echo {params.node}
-        python {input.pyscript} {wildcards.sample} {wildcards.image_feature} {params.n_mini_tiles} {params.out_folder}
-        """
-
-rule extract_tiles:
-    input:
-        OUT_FOLDER + "/data/h5ad/{sample}.h5ad",
-        OUT_FOLDER + "/data/image/{sample}." + IMAGE_FORMAT,
-        OUT_FOLDER + "/data/meta/{sample}.json",
-        pyscript = "../workflows/preprocess/extract_tiles.py"
-    output:
-        OUT_FOLDER + "/data/tiles/{sample}.npy"
-    params:
-        node = socket.gethostname(),
-        out_folder = OUT_FOLDER
-    threads: 1
-    resources:
-        p="gpu,compute",
-        gpu="gpu:0",
-        mem_mb=MEM_RULES["extract_tiles"],
-        time=TIME_RULES["extract_tiles"],
-        log=OUT_FOLDER + "/logs/slurm-%j.out",
-        jobname="extract_tiles",
-        tmp=TMP_MEM["extract_tiles"]
-    conda: "nonchev"
-    benchmark: OUT_FOLDER + "/benchmarks/extract_tiles/{sample}.log"
-    shell:
-        """
-        echo {params.node}
-        python {input.pyscript} {wildcards.sample} {params.out_folder}
+        python {input.pyscript} {wildcards.sample} {wildcards.image_feature} {wildcards.cell_diameter} {params.out_folder}
         """
 
 rule createInputX:
@@ -217,12 +186,3 @@ rule createInputX:
         """
         python {input.pyscript} {params.out_folder} {params.top_n_genes_to_predict}
         """
-
-
-
-
-
-
-
-
-

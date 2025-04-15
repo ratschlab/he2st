@@ -1,6 +1,3 @@
-from src.preprocess_utils.preprocess_image import get_low_res_image
-from aestetik.utils.utils_transcriptomics import preprocess_adata
-from sklearn.metrics.cluster import adjusted_rand_score
 from tqdm import tqdm
 from PIL import Image
 import pandas as pd
@@ -14,6 +11,7 @@ import glob
 
 import sys
 sys.path.append('../')
+from src.preprocess_utils.preprocess_image import get_low_res_image
 
 SAMPLE = str(sys.argv[1])
 org_sample_name = SAMPLE.replace('-1-', '-1_').replace('-2-', '-2_')
@@ -101,7 +99,8 @@ print("ground_truth loaded...")
 
 adata = adata.copy()
 
-if isinstance(adata.X, if )    pass
+if isinstance(adata.X, np.ndarray):
+    pass
 else:
     adata.X = adata.X.toarray()
 

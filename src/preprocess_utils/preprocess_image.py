@@ -206,7 +206,6 @@ def THItoGene_predict_spatial_transcriptomics_from_image_path(image_path,
 
 def BLEEP_predict_spatial_transcriptomics_from_image_path(image_path,
                                                           adata,
-                                                          spot_diameter,
                                                           preprocess,
                                                           out_folder,
                                                           selected_genes_bool,
@@ -216,10 +215,16 @@ def BLEEP_predict_spatial_transcriptomics_from_image_path(image_path,
                                                           model_expression,
                                                           top_k,
                                                           device,
+                                                          spot_diameter=None,
+                                                          cell_diameter=None
                                                           ):
 
     # COMPUTE QUERY
 
+    if spot_diameter:
+        diameter = spot_diameter
+    else:
+        diameter = cell_diameter
     image = pyvips.Image.new_from_file(image_path)
     counts = []
     use_bfloat16 = next(morphology_model.parameters()).dtype == torch.bfloat16
@@ -229,7 +234,7 @@ def BLEEP_predict_spatial_transcriptomics_from_image_path(image_path,
         with torch.inference_mode():
             for _, spot in tqdm(adata.obs.iterrows(), total=len(adata.obs)):
 
-                X = crop_tile(image, spot.x_pixel, spot.y_pixel, spot_diameter)
+                X = crop_tile(image, spot.x_pixel, spot.y_pixel, diameter)
                 X = preprocess(X).to(device)
                 X = convert_dtype(X, dtype)
                 X = morphology_model(X[None, ])
@@ -249,6 +254,7 @@ def BLEEP_predict_spatial_transcriptomics_from_image_path(image_path,
         samples=training_samples,
         is_train=False,
         morphology_model_name=image_feature_model,
+        cell_diameter=cell_diameter,
         genes_to_keep=selected_genes_bool)
 
     train_data_loader = torch.utils.data.DataLoader(dataset=train_data_loader_custom,

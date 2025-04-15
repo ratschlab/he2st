@@ -1,18 +1,22 @@
 import torch
 import lightning as L
-from deepspot import DeepSpot
 import matplotlib.pyplot as plt
-from deepspot import DeepSpotDataLoader
-from src.morphology_model import get_morphology_model_and_preprocess
-from src.utils import run_inference_from_dataloader
-from src.utils import plot_loss_values
+
 from lightning.pytorch.callbacks.early_stopping import EarlyStopping
 from aestetik import AESTETIK
 import pandas as pd
 import numpy as np
 import yaml
 import sys
+
 sys.path.append('../')
+from src.morphology_model import get_morphology_model_and_preprocess
+
+from deepspot.spot import DeepSpot
+from deepspot.spot import DeepSpotDataLoader
+
+from deepspot.utils.utils import run_inference_from_dataloader
+from deepspot.utils.utils import plot_loss_values
 
 model = str(sys.argv[1])
 out_folder = str(sys.argv[2])

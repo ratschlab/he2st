@@ -1,18 +1,17 @@
 import matplotlib.pyplot as plt
 import torch
 import lightning as L
-from src.BLEEP.utils import run_inference_from_dataloader
-from src.BLEEP.model import BLEEP
-from src.BLEEP.dataloader import BLEEPCustomDataLoader
-from src.morphology_model import get_morphology_model_and_preprocess
-from lightning.pytorch.callbacks.early_stopping import EarlyStopping
-from src.utils import load_data
 import pandas as pd
 import numpy as np
 import yaml
 import sys
 sys.path.append('../')
 
+from src.BLEEP.utils import run_inference_from_dataloader
+from src.BLEEP.model import BLEEP
+from src.BLEEP.dataloader import BLEEPCustomDataLoader
+from src.morphology_model import get_morphology_model_and_preprocess
+from lightning.pytorch.callbacks.early_stopping import EarlyStopping
 
 model = str(sys.argv[1])
 out_folder = str(sys.argv[2])
@@ -54,12 +53,17 @@ batch_size = int(param["batch_size"])
 image_feature_model = param["image_feature_model"]
 max_epochs = int(param["epochs"])
 top_k = int(param["top_k"])
+cell_diameter = param.get("cell_diameter", None)
 
+
+if "cell_diameter" in param:
+    del param["cell_diameter"]
 
 del param["top_k"]
 del param["image_feature_model"]
 del param["batch_size"]
 del param["epochs"]
+
 
 
 device = torch.device("cuda")
@@ -70,6 +74,7 @@ train_data_loader_custom = BLEEPCustomDataLoader(
     out_folder=out_folder,
     samples=training_samples_set,
     is_train=True,
+    cell_diameter=cell_diameter,
     morphology_model_name=image_feature_model,
     genes_to_keep=selected_genes_bool)
 
@@ -95,6 +100,7 @@ if len(sys.argv) >= 4:
         out_folder=out_folder,
         samples=training_samples_set,
         is_train=False,
+        cell_diameter=cell_diameter,
         morphology_model_name=image_feature_model,
         genes_to_keep=selected_genes_bool)
 
@@ -107,6 +113,7 @@ if len(sys.argv) >= 4:
         out_folder=out_folder,
         samples=validation_samples_set,
         is_train=False,
+        cell_diameter=cell_diameter,
         morphology_model_name=image_feature_model,
         genes_to_keep=selected_genes_bool)
 
@@ -129,6 +136,7 @@ if len(sys.argv) >= 4:
         out_folder=out_folder,
         samples=test_samples_set,
         is_train=False,
+        cell_diameter=cell_diameter,
         morphology_model_name=image_feature_model,
         genes_to_keep=selected_genes_bool)
 

@@ -265,11 +265,14 @@ def plot_enrichr(adata, label, gene_sets):
 
 
 def compute_pearson_top_n(data, batch_key, genes_df,
-                          top_n_interval=[5000, 3000, 2000,
-                                          1000, 500, 400,
-                                          300, 250,
-                                          200, 150, 100]
+                          top_n_interval=None
                           ):
+
+    
+    top_n_interval = top_n_interval if top_n_interval else [5000, 3000, 2000,
+                                                              1000, 500, 400,
+                                                              300, 250,
+                                                              200, 150, 100]
     score_top_n = []
     for batch in data[batch_key].unique():
         tab_batch = data[data[batch_key] == batch]

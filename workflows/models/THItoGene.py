@@ -1,20 +1,19 @@
 import matplotlib.pyplot as plt
 import torch
 import lightning as L
-from src.loss_function import loss_function
-from src.THItoGene.model import THItoGene
-from src.THItoGene.utils import run_inference_from_dataloader
-from src.THItoGene.dataloader import THItoGeneCustomDataLoader
-from src.morphology_model import get_morphology_model_and_preprocess
-from src.utils import plot_loss_values
+
 from lightning.pytorch.callbacks.early_stopping import EarlyStopping
-from src.utils import load_data
 import pandas as pd
 import numpy as np
 import yaml
 import sys
 sys.path.append('../')
-
+from src.utils import load_data
+from src.THItoGene.model import THItoGene
+from src.THItoGene.utils import run_inference_from_dataloader
+from src.THItoGene.dataloader import THItoGeneCustomDataLoader
+from src.morphology_model import get_morphology_model_and_preprocess
+from src.utils import plot_loss_values
 
 model = str(sys.argv[1])
 out_folder = str(sys.argv[2])

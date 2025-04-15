@@ -1,0 +1,8 @@
+image_feature_model:
+    - hoptimus0
+    - uni 
+    - phikon
+    
+cell_diameter:
+    - 120
+    - 180

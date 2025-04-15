@@ -1,7 +1,7 @@
 import torchvision.transforms as transforms
 from distutils.dir_util import copy_tree
 from torch.utils.data import Dataset
-from src.utils import load_data
+from deepspot.utils.utils_dataloader import load_data
 from tqdm import tqdm
 import pandas as pd
 import scanpy as sc
@@ -22,6 +22,7 @@ class BLEEPCustomDataLoader(Dataset):
                  genes_to_keep,
                  is_train,
                  morphology_model_name,
+                 cell_diameter=None,
                  target_sum=10000):
         super().__init__()
         self.out_folder = out_folder
@@ -29,6 +30,7 @@ class BLEEPCustomDataLoader(Dataset):
         self.genes_to_keep = genes_to_keep
         self.target_sum = target_sum
         self.is_train = is_train
+        self.cell_diameter = cell_diameter
         self.morphology_model_name = morphology_model_name
         self.cache = {}
 
@@ -49,7 +51,7 @@ class BLEEPCustomDataLoader(Dataset):
 
         self.coordinates_df = pd.concat(coordinates_df)
 
-        data = load_data(samples, self.out_folder, load_image_features=True, feature_model=self.morphology_model_name)
+        data = load_data(samples, self.out_folder, load_image_features=True, feature_model=self.morphology_model_name, cell_diameter=cell_diameter)
         self.transcriptomics_df = pd.DataFrame(data["y"][:, self.genes_to_keep],
                                                index=data["barcode"])
 
@@ -70,11 +72,11 @@ class BLEEPCustomDataLoader(Dataset):
 
         image = self.image_features_df.iloc[idx].values
 
-        coord = np.array([spot_info.x_array, spot_info.y_array])
+        
         y = self.transcriptomics_df.loc[spot_info.name].values
         item = {}
         item["image_features"] = image.astype(np.float32)
         item['reduced_expression'] = y.astype(np.float32)
         item['barcode'] = spot_info.barcode
-        item['spatial_coords'] = coord
+        
         return item

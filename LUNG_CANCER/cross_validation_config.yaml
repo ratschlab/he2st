@@ -1,0 +1,960 @@
+Fold_1_1:
+  test:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  training:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+Fold_1_2:
+  test:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  training:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  validation:
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+Fold_1_3:
+  test:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  training:
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+Fold_2_1:
+  test:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+Fold_2_2:
+  test:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  validation:
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+Fold_2_3:
+  test:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  training:
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+Fold_3_1:
+  test:
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+Fold_3_2:
+  test:
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  validation:
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+Fold_3_3:
+  test:
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  training:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+Fold_4_1:
+  test:
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+Fold_4_2:
+  test:
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  validation:
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+Fold_4_3:
+  test:
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  training:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+Fold_5_1:
+  test:
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+Fold_5_2:
+  test:
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  validation:
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+Fold_5_3:
+  test:
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  training:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+Fold_6_1:
+  test:
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+Fold_6_2:
+  test:
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  validation:
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+Fold_6_3:
+  test:
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  training:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+Fold_7_1:
+  test:
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+Fold_7_2:
+  test:
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  validation:
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+Fold_7_3:
+  test:
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  training:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  validation:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+Fold_8_1:
+  test:
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  validation:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+Fold_8_2:
+  test:
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  training:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  validation:
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+Fold_8_3:
+  test:
+  - P17-B1
+  - P17-B2
+  - P17-T1
+  - P17-T2
+  training:
+  - P16-B1
+  - P16-B2
+  - P16-T1
+  - P16-T2
+  - P15-B1
+  - P15-B2
+  - P15-T1
+  - P15-T2
+  - P24-B1
+  - P24-B2
+  - P24-T1
+  - P24-T2
+  - P25-B1
+  - P25-B2
+  - P25-T1
+  - P25-T2
+  - P11-B1
+  - P11-B2
+  - P11-T1
+  - P11-T2
+  - P11-T3
+  - P11-T4
+  validation:
+  - P19-B1
+  - P19-B2
+  - P19-T1
+  - P19-T2
+  - P10-B1
+  - P10-B2
+  - P10-T1
+  - P10-T2
+  - P10-T3
+  - P10-T4

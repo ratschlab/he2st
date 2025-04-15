@@ -76,7 +76,6 @@ for folder in model_folders_to_create:
 rule all:
     input:
          expand(OUT_FOLDER + "/prediction/{model}/data/h5ad/{sample}.h5ad", model=MODELS, sample=SAMPLES),
-         expand(OUT_FOLDER + "/prediction/{model}/transcriptomics/all_evaluate_transcriptomics.ipynb", model=MODELS),
 
 rule predict_expression:
     input:
@@ -89,12 +88,12 @@ rule predict_expression:
         node = socket.gethostname(),
         out_folder = OUT_FOLDER,
         source_data_path = SOURCE_DATA_PATH
-    threads: 1
+    threads: 6
     resources:
         p="gpu",
         gpu="gpu:1",
-        mem_mb=60000,
-        time="5:00:00",
+        mem_mb=90000,
+        time="10:00:00",
         log=OUT_FOLDER + "/logs/slurm-%j.out",
         jobname="predict_expression",
         tmp="15G"
@@ -104,28 +103,3 @@ rule predict_expression:
         echo {params.node}
         python {input.pyscript} {wildcards.model} {wildcards.sample} {params.out_folder} {params.source_data_path}
         """
-
-
-rule transcriptomics_sample_all_prediction:
-    input:
-        expand(OUT_FOLDER + "/prediction/{model}/data/h5ad/{sample}.h5ad", model=MODELS, sample=SAMPLES),
-        notebook = "../workflows/evaluate/all_evaluate_transcriptomics.ipynb"
-    output:
-        notebook = OUT_FOLDER + "/prediction/{model}/transcriptomics/all_evaluate_transcriptomics.ipynb"
-    threads: 20
-    params:
-        out_folder = OUT_FOLDER,
-    resources:
-        gpu="gpu:0",
-        p="compute,gpu",
-        mem_mb=MEM_RULES["transcriptomics_sample"],
-        time=TIME_RULES["transcriptomics_sample"],
-        log=OUT_FOLDER + "/logs/slurm-%j.out",
-        jobname="transcriptomics_sample",
-        tmp=TMP_MEM["transcriptomics_sample"]
-    conda: CONDA_ENV["python_env"]
-    shell:
-        """
-        papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder} -p model {wildcards.model}
-        """
-        

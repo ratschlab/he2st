@@ -1,0 +1,61 @@
+---
+title: "Figure6"
+output: html_document
+date: "2025-01-03"
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(data.table)
+library(ggpubr)
+library(ggprism)
+```
+
+```{r}
+# Load data
+df <- fread("../plotting_notebooks/figures/TLS_manual_annotation_gene_expression_v2.csv")
+df$class <- ifelse(df$label == "NT", "Normal", df$label)
+# Select relevant columns and reshape data
+tls_genes <- c("SPIB", "CD19", "CXCL13", "CORO1A", "LTB", "CCL19", "BLK", "CXCL9") # CD79A
+df <- df[, c("class", "sampleID", tls_genes), with = FALSE]
+
+# df[, (tls_genes) := lapply(.SD, function(x) {
+# x[x < 0] <- 0  # Set negative values to 0
+#  (x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))  # Min-max scaling
+# }), by = sampleID, .SDcols = tls_genes]
+df[, (tls_genes) := lapply(.SD, function(x) {
+  # Perform Z-score normalization
+  (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
+}), by = sampleID, .SDcols = tls_genes]
+
+df <- melt(df, c("class", "sampleID"), variable.name = "gene_name", value.name = "expression")
+# df[expression < 0 ]$expression <- 0
+```
+
+```{r, fig.width=9, fig.height=5}
+comparisons_list <- list(c("Normal", "TLS"))
+
+g <- (ggviolin(df, x = "class", y = "expression")
++ geom_boxplot(aes(fill = class), width = 0.3, position = position_dodge(width = 0.1))
+  + facet_wrap(~gene_name, nrow = 2, scales = "free_y")
+  + xlab("")
+  + ylab("Predicted expression\nz-score per slide")
+  + stat_compare_means(label = "p.signif") # Add Wilcoxon test p-values
+  + scale_fill_prism(palette = "colors")
+  + scale_color_prism(palette = "colors")
+  + theme_bw()
+  + theme(
+    strip.text = element_text(size = 23), # Increase facet label size
+    axis.text = element_text(size = 23), # Increase axis text size
+    axis.title = element_text(size = 23), # Increase axis title size
+    legend.text = element_text(size = 23), # Increase legend text size
+    legend.title = element_text(size = 23), # Increase legend title size
+    legend.position = "top",
+    axis.text.x = element_blank(), # Remove x-axis labels
+    axis.ticks.x = element_blank() # Remove x-axis ticks
+  )
+  + guides(fill = guide_legend(title = "Manual annotation"))
+)
+ggsave("figures/Figure6_predicted_gene_expression.png", g, width = 15, height = 8, dpi = 300)
+g
+```
