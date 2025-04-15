@@ -23,3 +23,4 @@ workflows/configs/config_DeepCell_*
 cell_size_Lung_Xenium
 USZ_test
 DeepCell
+plotting_notebooks/figures/

@@ -23,24 +23,9 @@ SAMPLE_LQ:
     - NCBI881
 
 MODEL:
-    - DeepCell_nn_2
-    - DeepCell_nn_5
-    - DeepCell_nn_10
-    - DeepCell_nn_15
-    - DeepCell_nn_20
-    - DeepCell_nn_25
-    - DeepCell_nn_30
-    - DeepCell_nn_35
-    - DeepCell_nn_40
-    - DeepCell_nn_45
-    - DeepCell_genenorm_no
-    - DeepCell_genenorm_standard
-    - DeepCell_oversampling_on
-    - DeepCell_oversampling_off
-    - DeepCell_epoch_2
-    - DeepCell_epoch_4
-    - DeepCell_epoch_6
-    
+    - DeepCell
+    - STNet_cell
+    - BLEEP_cell
 
 IMAGE_FEATURES:
     - inception
@@ -74,7 +59,7 @@ top_n_genes_to_predict: 300
 top_n_genes_to_evaluate: 100
 
 DATASET: "Lung_Xenium"
-OUT_FOLDER: "out_ablation"
+OUT_FOLDER: "out_benchmark"
 
 DOWNSAMPLE_FACTOR: 10
 IMAGE_FORMAT: "tif"

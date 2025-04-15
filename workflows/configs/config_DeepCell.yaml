@@ -6,13 +6,12 @@ image_feature_model:
 cell_diameter:
     - 120
     - 180
-radius_neighbors:
-    - 80
-    - 100
+n_neighbors:
+    - 30
 cell_context:
     - cell_neighbors
 epochs:
-    - 4
+    - 6
 loss_func:
     - mse
 batch_size:
