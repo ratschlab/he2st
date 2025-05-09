@@ -286,6 +286,55 @@ def compute_pearson_top_n(data, batch_key, genes_df,
     score_top_n = pd.concat(score_top_n)
     return score_top_n
 
+def compute_pearson_top_n_predictive_genes_per_model(data, gene_interval=None):
+
+    gene_interval = gene_interval if gene_interval else [5000, 3000, 2000,
+                                                              1000, 500, 400,
+                                                              300, 250,
+                                                              200, 150, 100, 10]
+    
+    data = data.copy()#.groupby(["gene", "model"]).pearson.agg("mean").reset_index()
+    data = data[~data["pearson"].isna()].copy()
+    data = data.groupby(["gene", "model", "dataset"]).pearson.agg("mean").reset_index()
+    data["gene_rank"] = data.groupby(["model", "dataset"]).pearson.transform(lambda x: x.rank(method="dense", ascending=False))
+    out = []
+    for top_n in gene_interval:
+        top_n_genes = data[data.gene_rank <= top_n].copy()
+        top_n_genes["top_n"] = top_n
+        out.append(top_n_genes)
+    data = pd.concat(out)
+    data = data.groupby(["model", "top_n", "dataset"])["pearson"].apply(
+        lambda x: pd.Series(bootstrapping(x, 1000), index=["pearson_mean", "pearson_std"])
+    ).reset_index()
+    data = data.pivot_table(index=["model", "top_n", "dataset"], columns="level_3", values="pearson").reset_index()
+    return data
+
+def compute_pearson_top_n_predictive_genes(data, gene_interval=None):
+
+    gene_interval = gene_interval if gene_interval else [5000, 3000, 2000,
+                                                              1000, 500, 400,
+                                                              300, 250,
+                                                              200, 150, 100, 10]
+    
+    data = data.copy()#.groupby(["gene", "model"]).pearson.agg("mean").reset_index()
+    data = data[~data["pearson"].isna()].copy()
+    data = data.groupby(["gene", "model", "dataset"]).pearson.agg("mean").reset_index()
+    data["gene_rank"] = data.groupby(["model", "dataset"]).pearson.transform(lambda x: x.rank(method="dense", ascending=False))
+    data["mrr"] = data.groupby(["gene", "dataset"]).gene_rank.transform(lambda x: 1 / x.mean())
+    data["mrr"] = data.groupby(["dataset"]).mrr.rank(method="dense", ascending=False)
+    out = []
+    for top_n in gene_interval:
+        top_n_genes = data[data.mrr <= top_n].copy()
+        top_n_genes["top_n"] = top_n
+        out.append(top_n_genes)
+    data = pd.concat(out)
+    #df_plot["mrr_bin"] = df_plot["mrr_bin"] * 10
+    data = data.groupby(["model", "top_n", "dataset"])["pearson"].apply(
+        lambda x: pd.Series(bootstrapping(x, 1000), index=["pearson_mean", "pearson_std"])
+    ).reset_index()
+    data = data.pivot_table(index=["model", "top_n", "dataset"], columns="level_3", values="pearson").reset_index()
+    return data
+
 
 def compute_area_under_pearson_top_n(data, batch_key, metric, n_resamples=1000):
     batch_scores = []

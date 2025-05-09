@@ -76,7 +76,8 @@ rule all:
          expand(OUT_FOLDER + "/prediction/{model}_label_model.pkl", model=MODELS),
          expand(OUT_FOLDER + "/prediction/{model}/data/h5ad_annotated/{pair}.h5ad", model=MODELS, pair=IMAGE_RNA_PAIRS),
          OUT_FOLDER + "/prediction/evaluate_label_model.ipynb",
-         OUT_FOLDER + "/prediction/survival_analysis.ipynb"
+         OUT_FOLDER + "/prediction/survival_analysis.ipynb",
+         OUT_FOLDER + "/prediction/survival_analysis_MIL.ipynb",
 
 rule create_anndata:
     input:
@@ -248,6 +249,30 @@ rule survival_analysis:
         time="5:00:00",
         log=OUT_FOLDER + "/logs/slurm-%j.out",
         jobname="survival_analysis",
+        tmp=0
+    conda: CONDA_ENV["python_env"]
+    shell:
+        """
+       papermill {input.notebook} {output.notebook} -p out_folder {params.out_folder}
+        """
+
+
+rule survival_analysis_MIL:
+    input:
+        expand(OUT_FOLDER + "/prediction/{model}/data/h5ad_annotated/{pair}.h5ad", model=MODELS, pair=IMAGE_RNA_PAIRS),
+        notebook = "../workflows/evaluate/survival_analysis_MIL.ipynb",
+    output:
+        notebook = OUT_FOLDER + "/prediction/survival_analysis_MIL.ipynb"
+    params:
+        out_folder = OUT_FOLDER,
+    threads: 5
+    resources:
+        gpu="gpu:1",
+        p="compute,gpu",
+        mem_mb=500000,
+        time="15:00:00",
+        log=OUT_FOLDER + "/logs/slurm-%j.out",
+        jobname="survival_analysis_MIL",
         tmp=0
     conda: CONDA_ENV["python_env"]
     shell:

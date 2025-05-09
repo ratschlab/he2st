@@ -3,10 +3,8 @@ MODEL:
     - BLEEP
     - STNet
 
-
-
 downsample_factor: 10
-spot_diameter: 142
+spot_diameter: 150
 spot_distance: 220
 white_cutoff: 200
 metadata_path: data/metadata_ffpe.csv

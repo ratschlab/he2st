@@ -3,6 +3,7 @@ MODEL:
     - DeepSpot
     - BLEEP
 
+
 downsample_factor: 10
 spot_diameter: 160
 spot_distance: 290

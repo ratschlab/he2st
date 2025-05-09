@@ -1,3 +1,5 @@
+run_survival.sh
+ressources
 */data*
 *.csv
 *.h5ad

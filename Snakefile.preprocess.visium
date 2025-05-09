@@ -160,6 +160,7 @@ rule extract_image_features:
     benchmark: OUT_FOLDER + "/benchmarks/extract_image_features/{sample}_{image_feature}.log"
     shell:
         """
+        echo "GPU UUID: $(nvidia-smi -q | grep 'GPU UUID')"
         echo {params.node}
         python {input.pyscript} {wildcards.sample} {wildcards.image_feature} {params.n_mini_tiles} {params.out_folder}
         """

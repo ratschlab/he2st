@@ -26,6 +26,8 @@ MODEL:
     - DeepCell
     - STNet_cell
     - BLEEP_cell
+    - MLP_cell
+    - LinearRegression_cell
 
 IMAGE_FEATURES:
     - inception
