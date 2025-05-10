@@ -1,17 +1,17 @@
-CONDA_ENV: {python_env: "nonchev", LinearRegression: "nonchev", LinearRegressionCell: "nonchev", MLP: "nonchev", MLPCell: "nonchev", DeepSpot: "nonchev", DeepCell: "nonchev", HisToGene: "nonchev", Hist2ST: "nonchev", THItoGene: "nonchev", BLEEP: "nonchev", STNet: "nonchev", STNetCell: "nonchev", TabPFN: "nonchev"}
+CONDA_ENV: {python_env: "nonchev", LinearRegression: "nonchev", LinearRegressionCell: "nonchev", MLP: "nonchev", MLPCell: "nonchev", DeepSpot: "nonchev", DeepCell: "nonchev", HisToGene: "nonchev", Hist2ST: "nonchev", THItoGene: "nonchev", BLEEP: "nonchev", STNet: "nonchev", STNetCell: "nonchev", TabPFN: "nonchev", MeanCellType: "nonchev"}
 
-PARTITION: {LinearRegression: "gpu,compute", LinearRegressionCell: "gpu,compute", MLP: "compute,gpu", MLPCell: "compute,gpu", DeepSpot: 'gpu', DeepCell: 'gpu', HisToGene: 'gpu', Hist2ST: 'gpu', THItoGene: 'gpu', BLEEP: 'gpu', STNet: 'gpu,compute', STNetCell: 'compute,gpu', TabPFN: 'gpu'}
+PARTITION: {LinearRegression: "gpu,compute", LinearRegressionCell: "gpu,compute", MLP: "compute,gpu", MLPCell: "compute,gpu", DeepSpot: 'gpu', DeepCell: 'gpu', HisToGene: 'gpu', Hist2ST: 'gpu', THItoGene: 'gpu', BLEEP: 'gpu', STNet: 'gpu,compute', STNetCell: 'compute,gpu', TabPFN: 'gpu', MeanCellType: "compute,gpu"}
 
-GPU: {LinearRegression: "gpu:0", LinearRegressionCell: "gpu:0", MLP: "gpu:0", MLPCell: "gpu:0", DeepSpot: "gpu:1", DeepCell: "gpu:1", BLEEP: "gpu:1", HisToGene: "gpu:1", Hist2ST: "gpu:1", THItoGene: "gpu:1", STNet: "gpu:0", STNetCell: "gpu:0", TabPFN: "gpu:1"}
+GPU: {LinearRegression: "gpu:0", LinearRegressionCell: "gpu:0", MLP: "gpu:0", MLPCell: "gpu:0", DeepSpot: "gpu:1", DeepCell: "gpu:1", BLEEP: "gpu:1", HisToGene: "gpu:1", Hist2ST: "gpu:1", THItoGene: "gpu:1", STNet: "gpu:0", STNetCell: "gpu:0", TabPFN: "gpu:1", MeanCellType: "gpu:0"}
 
-MEM: {LinearRegression: 42000, LinearRegressionCell: 50000, MLP: 42000, MLPCell: 50000, DeepSpot: 50000, DeepCell: 40000, BLEEP: 82000, HisToGene: 50000, Hist2ST: 50000, THItoGene: 50000, STNet: 50000, STNetCell: 50000, TabPFN: 50000}
+MEM: {LinearRegression: 42000, LinearRegressionCell: 50000, MLP: 42000, MLPCell: 50000, DeepSpot: 50000, DeepCell: 40000, BLEEP: 82000, HisToGene: 50000, Hist2ST: 50000, THItoGene: 50000, STNet: 50000, STNetCell: 50000, TabPFN: 50000, MeanCellType: 50000}
 
-TIME: {LinearRegression: "2:00:00", LinearRegressionCell: "4:00:00", MLP: "10:00:00", MLPCell: "15:00:00", DeepSpot: "4:00:00", DeepCell: "8:00:00", HisToGene: "15:00:00", Hist2ST: "15:00:00", THItoGene: "15:00:00", BLEEP: "10:00:00", STNet: "5:00:00", STNetCell: "5:00:00", TabPFN: "12:00:00"}
+TIME: {LinearRegression: "2:00:00", LinearRegressionCell: "4:00:00", MLP: "10:00:00", MLPCell: "15:00:00", DeepSpot: "4:00:00", DeepCell: "8:00:00", HisToGene: "15:00:00", Hist2ST: "15:00:00", THItoGene: "15:00:00", BLEEP: "10:00:00", STNet: "5:00:00", STNetCell: "5:00:00", TabPFN: "12:00:00", MeanCellType: "5:00:00"}
 
-CPU: {LinearRegression: 2, LinearRegressionCell: 2, MLP: 6, MLPCell: 6, DeepSpot: 2, DeepCell: 3, HisToGene: 3, Hist2ST: 3, THItoGene: 3, BLEEP: 6, STNet: 4, STNetCell: 4, TabPFN: 4}
+CPU: {LinearRegression: 2, LinearRegressionCell: 2, MLP: 6, MLPCell: 6, DeepSpot: 2, DeepCell: 3, HisToGene: 3, Hist2ST: 3, THItoGene: 3, BLEEP: 6, STNet: 4, STNetCell: 4, TabPFN: 4, MeanCellType: 6}
 
 MEM_RULES: {"structureData": 500, preprocessH5AD: 25000, extract_image_features: 55000, extract_tiles: 30000, preprocessH5AD": 20000, createInputX: 250000, evaluate_model: 250000, model_comparison: 10000, transcriptomics_sample: 60000, annotate: 11000}
 
-TMP_MEM: {"structureData": 0, extract_tiles: "5G" , extract_image_features: "10G", "preprocessH5AD": "5G", "createInputX": "5G", LinearRegression: 0, LinearRegressionCell: 0, RandomForestRegressor: 0, Ridge: 0, PoissonRegressor: 0, evaluate_model: 0, model_comparison: 0, transcriptomics_sample: 0, MLP: 0, MLPCell: 0, DeepSpot: 0, DeepCell: 0, annotate: '10G', HisToGene: 0, Hist2ST: 0, THItoGene: 0, BLEEP: 0, STNet: 0, STNetCell: 0}
+TMP_MEM: {"structureData": 0, extract_tiles: "5G" , extract_image_features: "10G", "preprocessH5AD": "5G", "createInputX": "5G", LinearRegression: 0, LinearRegressionCell: 0, RandomForestRegressor: 0, Ridge: 0, PoissonRegressor: 0, evaluate_model: 0, model_comparison: 0, transcriptomics_sample: 0, MLP: 0, MLPCell: 0, DeepSpot: 0, DeepCell: 0, annotate: '10G', HisToGene: 0, Hist2ST: 0, THItoGene: 0, BLEEP: 0, STNet: 0, STNetCell: 0, MeanCellType: 0}
 
 TIME_RULES: {"structureData": 10, extract_tiles: "1:00:00", "extract_image_features": "8:00:00", "preprocessH5AD": 20, "createInputX": 50, evaluate_model: "20:00:00", model_comparison: 50, transcriptomics_sample: 59, annotate: '10:00:00'}

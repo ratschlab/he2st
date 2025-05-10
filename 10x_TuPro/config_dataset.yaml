@@ -29,6 +29,7 @@ MODEL:
     - Hist2ST
     - THItoGene
     - BLEEP
+    - MeanCellType
 
 IMAGE_FEATURES:
     - inception

@@ -1,0 +1,9 @@
+image_feature_model:
+    - hoptimus0
+    - uni 
+    - phikon
+resolution:
+    - 0.1
+    - 0.5
+    - 1
+    - 10
